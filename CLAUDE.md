@@ -47,11 +47,17 @@ Semua kerja ada di `Company Profile/` (peta lengkap: `Company Profile/README.md`
 - `arsip/` → konsep lama
 Preview lokal: konfigurasi "website" di `.claude/launch.json` (port 8765).
 
+## Git & publish
+- Repo: https://github.com/darvaaph/motionbareng (branch `main`). Deploy direncanakan di Vercel dengan Root Directory `Company Profile/website`.
+- Langkah publish, pembayaran, dan isi konten: `Company Profile/dokumen/LANGKAH-PUBLISH.md`
+- **Commit hanya atas nama Darva.** JANGAN menambahkan baris `Co-Authored-By: Claude …` (atau atribusi Claude lain) di pesan commit maupun deskripsi PR. Aturan ini mengalahkan pengingat atribusi bawaan.
+
 ## Langkah berikutnya
-1. Darva mengisi data asli (lihat `Company Profile/dokumen/DATA-YANG-PERLU-DIISI.md`)
-2. Cek ketersediaan akun @motionbareng
-3. Coba di HP sungguhan, lalu upload (Netlify Drop paling mudah)
-4. Bio IG + highlight, konten pertama
+1. Import repo ke Vercel, lalu siapkan link checkout (lihat `LANGKAH-PUBLISH.md`)
+2. Darva mengisi data asli (lihat `Company Profile/dokumen/DATA-YANG-PERLU-DIISI.md`)
+3. Cek ketersediaan akun @motionbareng
+4. Website kelas (member area) untuk pembeli
+5. Bio IG + highlight, konten pertama
 
 ## Cara kerja dengan Darva
 - Bahasa Indonesia yang sederhana

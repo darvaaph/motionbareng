@@ -570,3 +570,49 @@ body.halaman-bio{background:radial-gradient(90% 55% at 50% 0%,#0B4F42 0%,transpa
 .karya-sub{display:flex;align-items:center;justify-content:space-between;gap:12px;margin:0 0 6px}
 .karya-sub h3{font-size:22px}
 .alat-karya{margin-bottom:14px}
+
+/* ===================== FORMULIR DAFTAR (pembayaran Scalev) ===================== */
+.daftar{display:grid;grid-template-columns:1fr 1fr;gap:22px;align-items:start;max-width:1000px;margin:0 auto;
+  background:var(--malam-2);border:2.5px solid rgba(246,195,80,.45);border-radius:24px;padding:26px}
+.daftar[hidden]{display:none}
+@media (max-width:860px){.daftar{grid-template-columns:1fr;padding:18px}}
+.daftar-kolom{display:grid;gap:18px}
+.blok-daftar{border:0;margin:0;padding:0;min-width:0;display:grid;gap:12px}
+.blok-daftar legend{display:flex;align-items:center;gap:10px;font-family:var(--f-judul);font-weight:800;font-size:22px;margin-bottom:12px;padding:0}
+.no-daftar{display:grid;place-items:center;width:32px;height:32px;border-radius:50%;background:var(--kuning);color:var(--tinta);border:2px solid var(--tinta);font-size:17px}
+.pilihan{display:grid;gap:10px}
+.opsi{position:relative;display:block;cursor:pointer}
+.opsi input{position:absolute;opacity:0;pointer-events:none}
+.opsi-isi{display:flex;align-items:center;justify-content:space-between;gap:12px;background:rgba(251,243,224,.06);border:2.5px solid rgba(251,243,224,.25);
+  border-radius:14px;padding:13px 14px 13px 44px;transition:border-color .15s,background .15s;position:relative;min-height:54px}
+.opsi-isi::before{content:"";position:absolute;left:14px;top:50%;width:20px;height:20px;margin-top:-10px;border-radius:50%;border:2.5px solid var(--kertas);background:transparent}
+.opsi input:checked + .opsi-isi{border-color:var(--kuning);background:rgba(246,195,80,.12)}
+.opsi input:checked + .opsi-isi::before{background:var(--kuning);box-shadow:inset 0 0 0 3px var(--malam-2)}
+.opsi input:focus-visible + .opsi-isi{outline:3px solid var(--kuning);outline-offset:2px}
+.opsi-isi strong{font-weight:700;font-size:16px;line-height:1.3}
+.opsi-harga{display:flex;align-items:baseline;gap:8px;white-space:nowrap}
+.opsi-harga s{opacity:.55;font-size:14px}
+.opsi-harga b{font-family:var(--f-judul);font-size:22px;color:var(--kuning)}
+.opsi-bayar img{height:22px;width:auto;max-width:76px;object-fit:contain;background:#fff;border-radius:5px;padding:2px 5px}
+.isian{display:grid;gap:6px;font-weight:700;font-size:15px}
+.isian small{font-weight:500;opacity:.7}
+.isian input{font:inherit;font-weight:500;font-size:16px;color:var(--tinta);background:var(--kertas);border:2.5px solid var(--tinta);border-radius:12px;padding:12px 14px;width:100%}
+.isian input:focus{outline:3px solid var(--kuning);outline-offset:1px}
+.isian input[aria-invalid="true"]{border-color:var(--terakota);outline:3px solid var(--terakota)}
+.ringkasan{background:var(--malam-3);border:2px solid rgba(251,243,224,.15);border-radius:14px;padding:14px 16px;display:grid;gap:6px;font-size:15px}
+.ringkasan div{display:flex;justify-content:space-between;gap:12px}
+.ringkasan .total{border-top:2px dashed rgba(251,243,224,.25);padding-top:10px;margin-top:4px;font-family:var(--f-judul);font-weight:800;font-size:22px}
+.ringkasan .total span:last-child{color:var(--kuning)}
+.ringkasan small{opacity:.65;font-size:12.5px}
+.pesan-daftar{margin:0;background:var(--pink);color:var(--tinta);border:2px solid var(--tinta);border-radius:10px;padding:10px 12px;font-size:14.5px;font-weight:600}
+.daftar .tombol{width:100%}
+.daftar .tombol:disabled{opacity:.7;cursor:wait;transform:none}
+.daftar .aman{color:var(--kertas);opacity:.7;margin:0;text-align:center;font-size:13px}
+.kosong{opacity:.8;font-size:14px;margin:0}
+/* cadangan (di luar Scalev) */
+.daftar-cadangan[hidden]{display:none}
+.kartu-cadangan{max-width:520px;margin:0 auto;text-align:center;background:var(--kertas);color:var(--tinta);border:3px solid var(--tinta);border-radius:24px;padding:28px 24px;box-shadow:0 8px 0 var(--malam-3)}
+.kartu-cadangan h3{font-size:26px;margin-bottom:6px}
+.kartu-cadangan .angka{justify-content:center}
+.kartu-cadangan p{margin:8px 0 20px;opacity:.85}
+.kartu-cadangan .tombol{width:100%}

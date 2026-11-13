@@ -5,12 +5,23 @@
    ============================================================ */
 window.PENGATURAN = {
 
-  /* 1. LINK CHECKOUT (WAJIB DIISI sebelum upload)
-     Tempel link halaman pembayaran dari Scalev / Mayar / Lynk.id, dll.
-     Contoh: "https://namatoko.myscalev.com/kelas-motionbareng"
-     Selama masih kosong, tombol beli hanya menggulir ke bagian harga
-     dan muncul peringatan kuning di bawah layar. */
-  linkCheckout: "",
+  /* 1. LINK CHECKOUT (cadangan)
+     Dipakai kalau halaman jualan dibuka di LUAR Scalev (misalnya di Vercel):
+     tombol "Beli" membuka link ini. Kalau halaman jualan dipasang di Scalev
+     (HTML Checkout Page), formulir di halaman yang dipakai, bukan link ini. */
+  linkCheckout: "https://motion-bareng.myscalev.com/p/kelas-motionbareng",
+
+  /* ALAMAT (isi setelah website online)
+     alamatWebsite       : alamat website di Vercel, tanpa garis miring di akhir.
+                           Contoh: "https://motionbareng.vercel.app"
+                           Dipakai halaman versi Scalev untuk tautan balik ke halaman bio
+                           dan untuk memuat gambar karya dari folder aset/.
+     alamatHalamanJualan : alamat halaman jualan yang dipasang di Scalev.
+                           Contoh: "https://motion-bareng.myscalev.com/kelas"
+                           Kalau diisi, semua tautan "Lihat kelasnya" di halaman bio
+                           mengarah ke sana. Kosong = pakai kelas.html di Vercel. */
+  alamatWebsite: "",
+  alamatHalamanJualan: "",
 
   /* LINK HALAMAN BIO (index.html). Kosong = tautannya otomatis disembunyikan.
      linkMasukKelas : alamat area member / login kelas untuk yang sudah beli

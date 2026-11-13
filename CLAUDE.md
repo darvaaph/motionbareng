@@ -10,7 +10,7 @@ Pemilik: Darva. Status (13 Nov 2026): kelas dinyatakan siap dijual, website jual
 - Pembeda utama dari pesaing: "bareng" = belajar bersama (grup komunitas, sesi bikin bareng, etalase karya murid)
 - Pesan utama: **"Tulis idenya, Claude Code yang bikin animasinya"** (+ "ElevenLabs yang isi suaranya")
 - Harga: Rp249.000 dicoret → **Rp149.000** ("harga promo perdana"). Harga harus sama di semua tempat.
-- Tombol beli → link checkout eksternal (Scalev / Mayar / Lynk.id, diisi Darva)
+- Pembayaran lewat **Scalev**. Halaman jualan dipasang sebagai **HTML Checkout Page** di Scalev (formulir di section `#daftar` memanggil `Scalev.checkout.createOrder`). Di luar Scalev (Vercel), tombol beli memakai `linkCheckout` sebagai cadangan.
 - Website dua halaman: `index.html` = link bio, `kelas.html` = halaman jualan
 - Bagian atas halaman: kenalan dulu (maskot besar, nama, slogan). Harga jangan di paling atas.
 
@@ -33,7 +33,7 @@ Teknik yang boleh dipakai (wujudnya harus beda): latar section selang-seling gel
 - Yang nongol dari pinggir layar: **tapak kaki**, BUKAN buntut (buntut terlalu mirip cacing Si Loop).
 - Kucing kecil ngintip di atas bar harga, ekspresinya berubah per section (biasa, senang, kagum, fokus, kaget, mikir).
 - Variasi warna: krem (utama), oren, kuning, teal.
-- Konsep lama (lembar kertas / flipbook / pesawat kertas) diarsipkan di `Company Profile/arsip/maskot-kertas/`.
+- Konsep lama (lembar kertas / flipbook / pesawat kertas) sudah dihapus dari proyek.
 
 ## Palet & font (dipakai sekarang)
 - Kertas #FBF3E0, tinta #2C2C2A, teal #1D9E75 (hiasan) / #0F6E52 (tombol), malam #04342C, terakota #D85A30 / #B9461F (latar), kuning #F6C350, stabilo #F7D774, pipi #F0997B
@@ -43,8 +43,9 @@ Teknik yang boleh dipakai (wujudnya harus beda): latar section selang-seling gel
 ## Struktur folder
 Semua kerja ada di `Company Profile/` (peta lengkap: `Company Profile/README.md`):
 - `website/` → yang di-upload. File yang paling sering diubah: `website/pengaturan.js`
-- `dokumen/` → `DATA-YANG-PERLU-DIISI.md` (daftar placeholder), `PANDUAN-WEBSITE.md`, `REFERENSI-MOTIONFORMAT.md`
-- `arsip/` → konsep lama
+- `dokumen/` → `DATA-YANG-PERLU-DIISI.md` (daftar placeholder), `PANDUAN-WEBSITE.md`, `LANGKAH-PUBLISH.md`, `PASANG-DI-SCALEV.md`, `REFERENSI-MOTIONFORMAT.md`
+- `alat/buat-halaman-scalev.py` → membuat `scalev/kelas-scalev.html` (versi satu file untuk Scalev). Jalankan ulang setiap `website/` berubah.
+- Setiap mengubah `gaya.css` / `umum.js` / `pengaturan.js`: naikkan `?v=` di `index.html` & `kelas.html`.
 Preview lokal: konfigurasi "website" di `.claude/launch.json` (port 8765).
 
 ## Git & publish

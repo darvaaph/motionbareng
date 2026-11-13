@@ -132,25 +132,32 @@
   const isi = { promo: rp(promo), normal: rp(normal), hemat: 'Hemat ' + rp(normal - promo) };
   $$('[data-harga]').forEach(el => { el.textContent = isi[el.dataset.harga]; });
   if (P.labelPromo) $$('[data-isi="labelPromo"]').forEach(el => { el.textContent = P.labelPromo; });
-  const link = (P.linkCheckout || '').trim();
-  const keHarga = $('#harga') ? '#harga' : 'kelas.html#harga';
-  $$('[data-checkout]').forEach(a => {
-    if (link) { a.href = link; a.target = '_blank'; a.rel = 'noopener'; } else a.href = keHarga;
+  /* tombol "Beli" & formulir pembayaran diatur setelah halaman siap (lihat aturPembayaran di bawah) */
+
+  /* ---------- alamat: dipakai saat halaman jualan dipasang di Scalev ---------- */
+  const esc = s => String(s ?? '').replace(/[&<>"']/g, c => ({ '&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;' }[c]));
+  const alamatWebsite = String(P.alamatWebsite || '').trim().replace(/\/+$/, '');
+  const alamatJualan = String(P.alamatHalamanJualan || '').trim();
+  /* file relatif (gambar karya, logo) diambil dari website Vercel kalau halaman ini tidak berada di sana */
+  const aset = p => {
+    p = String(p || '').trim();
+    if (!p || /^(https?:|data:|\/\/)/i.test(p) || !alamatWebsite || !window.Scalev) return p;
+    return alamatWebsite + '/' + p.replace(/^\.?\//, '');
+  };
+  /* tautan ke halaman jualan: pakai alamat Scalev kalau sudah diisi */
+  if (alamatJualan) $$('a[href^="kelas.html"]').forEach(a => {
+    const sisa = a.getAttribute('href').slice('kelas.html'.length);
+    a.href = alamatJualan.replace(/[?#].*$/, '') + sisa;
   });
-  if (!link) {
-    const w = document.createElement('div');
-    w.className = 'peringatan'; w.setAttribute('role', 'status');
-    w.textContent = '⚠ Link checkout belum diisi. Buka file pengaturan.js lalu isi linkCheckout sebelum website di-upload.';
-    document.body.appendChild(w);
-  }
+  /* di Scalev, tautan "beranda" (./) diarahkan ke website Vercel */
+  if (window.Scalev && alamatWebsite) $$('a[href="./"]').forEach(a => { a.href = alamatWebsite + '/'; });
 
   /* ---------- karya ---------- */
-  const esc = s => String(s ?? '').replace(/[&<>"']/g, c => ({ '&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;' }[c]));
   const rel = $('#rel-karya');
   if (rel) (P.karya || []).forEach((k, i) => {
     const jenis = k.jenis === 'shorts' ? 'shorts' : 'explainer';
     const kata = String(k.judul || '').split(' ').slice(-1)[0];
-    const dalam = k.gambar ? `<img src="${esc(k.gambar)}" alt="" loading="lazy">` :
+    const dalam = k.gambar ? `<img src="${esc(aset(k.gambar))}" alt="" loading="lazy">` :
       `<div class="pola pola-${i % 3}"><i></i><i></i><i></i><i></i></div>
        <span class="judul-thumb">${esc(k.judul)}</span>
        ${jenis === 'shorts' ? `<span class="subtitle-thumb">${esc(kata)}</span>` : ''}`;
@@ -189,7 +196,7 @@
   };
   const LOGO = P.logoAlat || {};
   $$('.alat').forEach(el => {
-    const n = el.dataset.alat, logo = String(LOGO[n] || '').trim();
+    const n = el.dataset.alat, logo = aset(LOGO[n]);
     el.insertAdjacentHTML('afterbegin', logo
       ? `<img src="${esc(logo)}" alt="" width="16" height="16">`
       : `<span class="alat-ikon" aria-hidden="true">${IKON_ALAT[n] || ''}</span>`);
@@ -258,6 +265,152 @@
     if (!u) { a.closest('li').hidden = true; return; }
     a.href = u; a.target = '_blank'; a.rel = 'noopener';
   });
+
+  /* =====================================================================
+     PEMBAYARAN
+     - Di Scalev (HTML Checkout Page) ada window.Scalev → formulir #form-daftar
+       membuat pesanan langsung (Scalev.checkout.createOrder), lalu pindah ke redirectUrl.
+     - Di luar Scalev (Vercel) → tombol "Beli" membuka linkCheckout (cadangan).
+     Dokumentasi: https://dev.scalev.com/docs/html-mode-runtime
+     ===================================================================== */
+  const formDaftar = $('#form-daftar');
+  const dataScalev = () => {
+    try { const d = window.Scalev?.data?.get?.(); return d && d.store ? d : null; } catch (e) { return null; }
+  };
+
+  function aturPembayaran() {
+    const d = formDaftar ? dataScalev() : null;
+    const link = String(P.linkCheckout || '').trim();
+    $$('[data-checkout]').forEach(a => {
+      a.removeAttribute('target'); a.removeAttribute('rel');
+      if (d) a.href = '#daftar';
+      else if (link) { a.href = link; a.target = '_blank'; a.rel = 'noopener'; }
+      else a.href = $('#daftar') ? '#daftar' : (alamatJualan || 'kelas.html') + '#daftar';
+    });
+    if (d) { mulaiFormScalev(d); return; }
+    if (!link) {
+      const w = document.createElement('div');
+      w.className = 'peringatan'; w.setAttribute('role', 'status');
+      w.textContent = '⚠ Link checkout belum diisi. Buka file pengaturan.js lalu isi linkCheckout sebelum website di-upload.';
+      document.body.appendChild(w);
+    }
+  }
+
+  function mulaiFormScalev(d) {
+    const S = window.Scalev, store = d.store, f = formDaftar;
+    const angka = x => Number(x || 0);
+    $('#daftar-cadangan').hidden = true;
+    f.hidden = false;
+
+    /* 1. paket: semua varian produk + bundle yang dipilih di tab Context halaman Scalev */
+    const paket = [];
+    (store.products || []).forEach(p => (p.variants || []).forEach(v => paket.push({
+      jenis: 'product', id: v.uniqueId, harga: angka(v.price),
+      nama: p.name + ((p.variants.length > 1 && v.name) ? ' · ' + v.name : '')
+    })));
+    (store.bundlePriceOptions || []).forEach(b => paket.push({ jenis: 'bundle', id: b.uniqueId, nama: b.name, harga: angka(b.price) }));
+    if (!paket.length) {
+      f.hidden = true; $('#daftar-cadangan').hidden = false;
+      console.warn('motionbareng: belum ada produk di tab Context halaman Scalev.');
+      return;
+    }
+    if (paket[0].harga !== promo) console.warn(`motionbareng: harga di Scalev (${paket[0].harga}) beda dengan hargaPromo di pengaturan.js (${promo}). Samakan supaya tidak membingungkan pembeli.`);
+    $('#pilihan-paket').innerHTML = paket.map((k, i) => `
+      <label class="opsi">
+        <input type="radio" name="paket" value="${i}" ${i ? '' : 'checked'}>
+        <span class="opsi-isi"><strong>${esc(k.nama)}</strong>
+          <span class="opsi-harga">${k.harga === promo && normal > promo ? `<s>${rp(normal)}</s>` : ''}<b>${rp(k.harga)}</b></span>
+        </span>
+      </label>`).join('');
+
+    /* 3. metode pembayaran: persis seperti yang diaktifkan di toko Scalev */
+    const metode = store.paymentMethodOptions || [];
+    $('#pilihan-bayar').innerHTML = metode.length ? metode.map((m, i) => `
+      <label class="opsi opsi-bayar">
+        <input type="radio" name="bayar" value="${esc(m.value)}" ${i ? '' : 'checked'}>
+        <span class="opsi-isi"><strong>${esc(m.display)}</strong>${m.logoUrl ? `<img src="${esc(m.logoUrl)}" alt="" loading="lazy">` : ''}</span>
+      </label>`).join('') : '<p class="kosong">Metode pembayaran belum diaktifkan di toko Scalev.</p>';
+
+    const nilai = nama => { const el = f.elements[nama]; return el ? el.value : ''; };
+    const itemDipilih = () => {
+      const k = paket[+nilai('paket') || 0];
+      return k.jenis === 'bundle'
+        ? { type: 'bundle', bundlePriceOptionUniqueId: k.id, quantity: 1 }
+        : { type: 'product', variantUniqueId: k.id, quantity: 1 };
+    };
+
+    /* ringkasan biaya: harga paket dulu, lalu total resmi dari Scalev (termasuk biaya metode bayar) */
+    const tampilRingkasan = (baris, total, catatan) => {
+      $('#ringkasan').innerHTML = baris.map(([n, v]) => `<div><span>${esc(n)}</span><span>${rp(v)}</span></div>`).join('') +
+        `<div class="total"><span>Total</span><span>${rp(total)}</span></div>` + (catatan ? `<small>${esc(catatan)}</small>` : '');
+    };
+    let urutan = 0;
+    async function hitung() {
+      const no = ++urutan, k = paket[+nilai('paket') || 0];
+      tampilRingkasan([['Harga paket', k.harga]], k.harga, 'Biaya metode pembayaran (kalau ada) dihitung oleh Scalev.');
+      if (!S.checkout?.estimateSummary || !nilai('bayar')) return;
+      try {
+        const r = await S.checkout.estimateSummary({ items: [itemDipilih()], paymentMethod: nilai('bayar'), allowIncomplete: true });
+        if (no !== urutan || !r || r.isComplete === false) return;
+        const baris = [['Harga paket', angka(r.productPrice)]];
+        if (angka(r.otherIncome)) baris.push([r.otherIncomeName || 'Biaya lain', angka(r.otherIncome)]);
+        if (angka(r.serviceFee)) baris.push(['Biaya layanan', angka(r.serviceFee)]);
+        if (angka(r.shippingCost)) baris.push(['Ongkos kirim', angka(r.shippingCost)]);
+        tampilRingkasan(baris, angka(r.grossRevenue), '');
+      } catch (e) { /* ringkasan sementara tetap tampil */ }
+    }
+    f.addEventListener('change', e => { if (e.target.name === 'paket' || e.target.name === 'bayar') hitung(); });
+    hitung();
+
+    /* kirim pesanan */
+    const pesan = $('#pesan-daftar'), tombol = $('#tombol-pesan'), teksTombol = tombol.textContent;
+    const tampilPesan = (teks, tautan) => {
+      pesan.textContent = teks || '';
+      if (tautan) { const a = document.createElement('a'); a.href = tautan; a.className = 'link-polos'; a.textContent = 'Buka halaman pesanan'; pesan.append(' ', a); }
+      pesan.hidden = !teks;
+    };
+    const salah = (el, teks) => { el.setAttribute('aria-invalid', 'true'); el.focus(); tampilPesan(teks); };
+    $$('input', f).forEach(el => el.addEventListener('input', () => el.removeAttribute('aria-invalid')));
+    let terkunci = false;
+
+    f.addEventListener('submit', async e => {
+      e.preventDefault();
+      if (terkunci) return;
+      const nama = f.elements.nama.value.trim();
+      const wa = f.elements.wa.value.replace(/[^\d+]/g, '');
+      const email = f.elements.email.value.trim();
+      if (!nama) return salah(f.elements.nama, 'Nama lengkap wajib diisi.');
+      if (wa.replace(/\D/g, '').length < 9) return salah(f.elements.wa, 'Nomor WhatsApp belum benar. Contoh: 081234567890');
+      if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) return salah(f.elements.email, 'Alamat email belum benar.');
+      if (!nilai('bayar')) return tampilPesan('Metode pembayaran belum tersedia. Hubungi kami lewat kontak di bawah.');
+
+      tampilPesan('');
+      terkunci = true; tombol.disabled = true; tombol.textContent = 'Membuat pesanan…';
+      try {
+        const order = await S.checkout.createOrder({
+          customer: { name: nama, phone: wa, email },
+          paymentMethod: nilai('bayar'),
+          items: [itemDipilih()]
+        });
+        const tujuan = String(order?.redirectUrl || '').trim();
+        if (tujuan) { tombol.textContent = 'Mengarahkan ke pembayaran…'; location.assign(tujuan); return; }
+        tombol.textContent = 'Pesanan dibuat';
+        tampilPesan('Pesanan berhasil dibuat. Instruksi pembayaran juga dikirim ke email kamu.', String(order?.publicOrderUrl || '').trim());
+      } catch (err) {
+        if (err && err.orderOutcome === 'unknown') {
+          /* pesanan mungkin sudah tercatat: jangan biarkan dikirim dua kali */
+          tombol.textContent = 'Menunggu konfirmasi';
+          tampilPesan('Koneksi terputus saat membuat pesanan, jadi pesanan mungkin sudah tercatat. Cek email atau WhatsApp kamu dulu. Kalau belum ada apa-apa, muat ulang halaman lalu coba lagi.');
+          return;
+        }
+        terkunci = false; tombol.disabled = false; tombol.textContent = teksTombol;
+        tampilPesan((err && err.message) || 'Pesanan gagal dibuat. Coba lagi sebentar lagi.');
+      }
+    });
+  }
+
+  if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', aturPembayaran, { once: true });
+  else aturPembayaran();
 
   /* ---------- gerak saat scroll ---------- */
   const bar = $('#bar-beli'), kb = $('#kucing-bar');

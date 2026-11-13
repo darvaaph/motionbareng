@@ -14,7 +14,7 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@700;800&family=Caveat:wght@700&family=Plus+Jakarta+Sans:wght@400;500;700;800&display=swap" rel="stylesheet">
 <script>document.documentElement.classList.add('js')</script>
-<link rel="stylesheet" href="aset/css/gaya.css?v=2">
+<link rel="stylesheet" href="aset/css/gaya.css?v=3">
 </head>
 <body>
 
@@ -251,8 +251,59 @@
             <li>Ikut sesi bikin bareng</li>
             <li>Kesempatan karyamu dipajang di etalase</li>
           </ul>
-          <a class="tombol besar" href="#harga" data-checkout>Beli sekarang · <span data-harga="promo">Rp149.000</span></a>
-          <p class="aman">Pembayaran diproses di halaman checkout yang aman.</p>
+          <a class="tombol besar" href="#daftar" data-checkout>Beli sekarang · <span data-harga="promo">Rp149.000</span></a>
+          <p class="aman">Pembayaran diproses aman lewat Scalev.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== DAFTAR / PEMBAYARAN (malam) =====
+       Di Scalev (HTML Checkout Page): formulir #form-daftar tampil dan langsung membuat pesanan.
+       Di Vercel (tanpa Scalev): bagian #daftar-cadangan tampil, tombolnya membuka linkCheckout. -->
+  <section class="malam" id="daftar" data-sobek data-eks="senang">
+    <div class="kunang" data-n="16" aria-hidden="true"></div>
+    <div class="wadah">
+      <div class="kepala-section naik">
+        <span class="kicker">Daftar</span>
+        <h2>Isi data, <span class="stabilo">langsung bayar</span></h2>
+        <p>Cuma 3 langkah. Setelah pembayaran terkonfirmasi, akses kelas dikirim ke email kamu.</p>
+      </div>
+
+      <form class="daftar" id="form-daftar" hidden novalidate>
+        <div class="daftar-kolom">
+          <fieldset class="blok-daftar">
+            <legend><span class="no-daftar">1</span> Paket kamu</legend>
+            <div class="pilihan" id="pilihan-paket"></div>
+          </fieldset>
+          <fieldset class="blok-daftar">
+            <legend><span class="no-daftar">2</span> Data kamu</legend>
+            <label class="isian"><span>Nama lengkap</span>
+              <input name="nama" autocomplete="name" required></label>
+            <label class="isian"><span>Nomor WhatsApp</span>
+              <input name="wa" type="tel" inputmode="tel" autocomplete="tel" placeholder="08xxxxxxxxxx" required></label>
+            <label class="isian"><span>Email <small>(akses kelas dikirim ke sini)</small></span>
+              <input name="email" type="email" autocomplete="email" placeholder="nama@email.com" required></label>
+          </fieldset>
+        </div>
+        <div class="daftar-kolom">
+          <fieldset class="blok-daftar">
+            <legend><span class="no-daftar">3</span> Metode pembayaran</legend>
+            <div class="pilihan" id="pilihan-bayar"></div>
+          </fieldset>
+          <div class="ringkasan" id="ringkasan" aria-live="polite"></div>
+          <p class="pesan-daftar" id="pesan-daftar" role="alert" hidden></p>
+          <button class="tombol kuning besar" type="submit" id="tombol-pesan">Buat pesanan &amp; bayar</button>
+          <p class="aman">Setelah pesanan dibuat, kamu diarahkan ke halaman pembayaran Scalev.</p>
+        </div>
+      </form>
+
+      <div class="daftar-cadangan naik" id="daftar-cadangan">
+        <div class="kartu-cadangan">
+          <h3>Kelas motionbareng</h3>
+          <div class="angka"><span class="promo" data-harga="promo">Rp149.000</span> <s data-harga="normal">Rp249.000</s></div>
+          <p>Lanjutkan ke halaman pembayaran untuk mengisi data dan memilih metode bayar.</p>
+          <a class="tombol kuning besar" href="#daftar" data-checkout>Lanjut ke pembayaran</a>
         </div>
       </div>
     </div>
@@ -321,7 +372,7 @@
   </div>
 </div>
 
-<script src="pengaturan.js?v=2"></script>
-<script src="aset/js/umum.js?v=2"></script>
+<script src="pengaturan.js?v=3"></script>
+<script src="aset/js/umum.js?v=3"></script>
 </body>
 </html>

@@ -16,13 +16,16 @@ Company Profile/
 │       └── gambar/
 │           ├── karya/        ← thumbnail contoh karya (karya-1.jpg, dst.)
 │           └── logo/         ← logo resmi alat (Claude, ElevenLabs), opsional
+├── scalev/
+│   └── kelas-scalev.html     ← halaman jualan versi satu file untuk Scalev (DIBUAT OTOMATIS)
+├── alat/
+│   └── buat-halaman-scalev.py ← pembuat file scalev/kelas-scalev.html
 ├── dokumen/                  ← catatan kerja, TIDAK di-upload
+│   ├── PASANG-DI-SCALEV.md        ← cara pasang formulir pembayaran di Scalev
 │   ├── LANGKAH-PUBLISH.md         ← ★ urutan publish: Vercel, pembayaran, isi konten
 │   ├── DATA-YANG-PERLU-DIISI.md   ← daftar centang data yang masih placeholder
 │   ├── PANDUAN-WEBSITE.md         ← cara mengisi, mengubah, dan upload
 │   └── REFERENSI-MOTIONFORMAT.md  ← catatan teknik dari pesaing (bukan untuk ditiru mentah)
-└── arsip/
-    └── maskot-kertas/        ← konsep maskot lembar kertas lama (tidak dipakai lagi)
 ```
 
 ## Mau mengubah apa? Buka file ini
@@ -35,7 +38,8 @@ Company Profile/
 | Teks halaman link bio | `website/index.html` |
 | Teks halaman jualan (materi, FAQ, yang didapat) | `website/kelas.html` (cari `GANTI:`) |
 | Warna & font | `website/aset/css/gaya.css` (bagian `:root` paling atas) |
-| Bentuk maskot kucing, animasi | `website/aset/js/umum.js` |
+| Bentuk maskot kucing, animasi, formulir pembayaran | `website/aset/js/umum.js` |
+| Halaman jualan di Scalev | ubah `website/`, lalu jalankan `alat/buat-halaman-scalev.py` dan upload `scalev/kelas-scalev.html` (lihat `dokumen/PASANG-DI-SCALEV.md`) |
 
 ## Melihat website di laptop sendiri
 

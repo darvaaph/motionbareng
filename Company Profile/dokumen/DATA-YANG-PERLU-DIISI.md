@@ -33,6 +33,14 @@ Semua path di bawah relatif terhadap folder `Company Profile/`.
   - Di mana: `website/kelas.html` → section `id="bareng"`
   - Pastikan grup komunitas, sesi bikin bareng, dan etalase karya memang ada saat kelas dijual.
 
+## Formulir pembayaran di Scalev
+
+- [ ] Halaman **HTML Checkout Page** di Scalev dibuat dan di-publish (langkah lengkap: `dokumen/PASANG-DI-SCALEV.md`)
+- [ ] **`alamatWebsite`** di `pengaturan.js` diisi alamat Vercel
+- [ ] **`alamatHalamanJualan`** di `pengaturan.js` diisi alamat halaman Scalev
+- [ ] `hargaPromo` di `pengaturan.js` sama dengan harga produk di Scalev
+- [ ] Uji pesan & bayar dari halaman Scalev berhasil
+
 ## Halaman link bio (`index.html`)
 
 - [ ] **Link masuk kelas** (untuk yang sudah beli) → `pengaturan.js` → `linkMasukKelas: ""`

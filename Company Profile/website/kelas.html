@@ -1,0 +1,327 @@
+<!doctype html>
+<html lang="id">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>motionbareng · Kelas bikin video motion pakai Claude Code + ElevenLabs</title>
+<meta name="description" content="Kelas online bikin video motion (explainer & shorts) pakai Claude Code dan ElevenLabs. Sekali bayar, belajar bareng komunitas.">
+<meta property="og:title" content="motionbareng · Bikin video motion sendiri, bareng-bareng">
+<meta property="og:description" content="Kelas online bikin video explainer & shorts beranimasi pakai Claude Code + ElevenLabs. Sekali bayar.">
+<meta property="og:type" content="website">
+<meta name="theme-color" content="#04342C">
+<link rel="icon" href="favicon.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@700;800&family=Caveat:wght@700&family=Plus+Jakarta+Sans:wght@400;500;700;800&display=swap" rel="stylesheet">
+<script>document.documentElement.classList.add('js')</script>
+<link rel="stylesheet" href="aset/css/gaya.css?v=2">
+</head>
+<body>
+
+<svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false">
+  <filter id="goyang" x="-20%" y="-20%" width="140%" height="140%">
+    <feTurbulence type="fractalNoise" baseFrequency="0.018" numOctaves="1" seed="3"/>
+    <feDisplacementMap in="SourceGraphic" scale="2.2"/>
+  </filter>
+</svg>
+<div class="serat" aria-hidden="true"></div>
+
+<header class="nav">
+  <div class="wadah">
+    <a class="logo" href="./" aria-label="motionbareng, ke beranda"><span data-kucing="kepala"></span><span>motion<span class="b">bareng</span></span></a>
+    <nav class="menu" aria-label="Menu utama">
+      <a href="#karya">Karya</a>
+      <a href="#cara">Cara kerja</a>
+      <a href="#materi">Materi</a>
+      <a href="#harga">Harga</a>
+      <a href="#faq">FAQ</a>
+      <a class="tombol" href="#harga" data-checkout>Beli kelas</a>
+    </nav>
+  </div>
+</header>
+
+<main>
+  <!-- ===== HERO (malam) ===== -->
+  <section class="hero malam" id="atas" data-eks="biasa">
+    <div class="kunang" data-n="18" aria-hidden="true"></div>
+    <div class="wadah hero-tengah">
+      <div class="hero-maskot masuk" style="--u:0" data-kucing="besar"></div>
+      <h1 class="merek masuk" style="--u:1">motion<span>bareng</span></h1>
+      <p class="slogan masuk" style="--u:2">bikin video motion,<br class="hp"> bareng-bareng.</p>
+      <p class="lead masuk" style="--u:3">Kelas online bikin <mark>video explainer &amp; shorts</mark> beranimasi. Tulis idenya, <span class="alat" data-alat="claude">Claude Code</span> yang bikin animasinya, <span class="alat" data-alat="elevenlabs">ElevenLabs</span> yang isi suaranya. Tanpa After Effects, tanpa harus jago desain.</p>
+      <div class="aksi masuk" style="--u:4">
+        <a class="tombol kuning besar" href="#harga">Lihat kelasnya</a>
+        <a class="link-polos" href="#karya">Contoh karya ↓</a>
+      </div>
+      <div class="hero-papan masuk" style="--u:5">
+        <span class="coretan" aria-hidden="true">dari naskah, jadi video!</span>
+        <div data-kucing="papan"></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== KARYA (krem) ===== -->
+  <section class="krem" id="karya" data-sobek data-eks="kagum">
+    <div class="intip kiri" style="--atas:80px" aria-hidden="true"></div>
+    <div class="wadah">
+      <div class="kepala-section naik">
+        <span class="kicker">Contoh karya</span>
+        <div class="judul-coret"><h2>Video yang bisa <span class="stabilo">kamu bikin</span></h2><span class="coretan">geser →</span></div>
+        <p>Explainer untuk YouTube dan shorts untuk Reels, TikTok, atau Shorts. Semuanya dengan alur yang diajarkan di kelas.</p>
+      </div>
+      <div class="alat-karya">
+        <div class="filter" role="group" aria-label="Saring karya">
+          <button type="button" data-saring="semua" aria-pressed="true">Semua</button>
+          <button type="button" data-saring="explainer" aria-pressed="false">Explainer 16:9</button>
+          <button type="button" data-saring="shorts" aria-pressed="false">Shorts 9:16</button>
+        </div>
+      </div>
+      <div class="baris-karya" data-baris="explainer">
+        <div class="karya-sub"><h3>Explainer 16:9</h3>
+          <div class="panah">
+            <button type="button" data-geser="-1" aria-label="Geser explainer ke kiri">←</button>
+            <button type="button" data-geser="1" aria-label="Geser explainer ke kanan">→</button>
+          </div>
+        </div>
+        <div class="rel" id="rel-karya"></div>
+      </div>
+      <div class="baris-karya" data-baris="shorts">
+        <div class="karya-sub"><h3>Shorts 9:16</h3>
+          <div class="panah">
+            <button type="button" data-geser="-1" aria-label="Geser shorts ke kiri">←</button>
+            <button type="button" data-geser="1" aria-label="Geser shorts ke kanan">→</button>
+          </div>
+        </div>
+        <div class="rel" id="rel-shorts"></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== KENAPA BARENG (malam) ===== -->
+  <section class="malam" id="bareng" data-sobek data-eks="senang">
+    <div class="kunang" data-n="16" aria-hidden="true"></div>
+    <div class="wadah">
+      <div class="kepala-section naik">
+        <span class="kicker">Kenapa bareng</span>
+        <h2>Belajar sendirian itu <span class="stabilo">gampang mandek</span></h2>
+        <p>Di motionbareng kamu punya teman, target, dan tempat pamer karya.</p>
+      </div>
+      <div class="bareng-gambar" data-kucing="bareng"></div>
+      <div class="pilar">
+        <div class="kartu-gelap naik">
+          <div class="ilus" aria-hidden="true"><span class="gel">videoku udah jadi!</span><span class="gel">keren, ajarin dong</span><span class="gel">cobain easing ini</span></div>
+          <h3>Grup komunitas</h3>
+          <p>Tempat tanya, pamer progres, dan saling kasih masukan sesama murid.</p>
+        </div>
+        <div class="kartu-gelap naik">
+          <div class="ilus" aria-hidden="true" data-kucing="sesi"></div>
+          <h3>Sesi bikin bareng</h3>
+          <p>Bikin video bareng-bareng biar ada teman, ada target, dan nggak berhenti di tengah jalan.</p>
+        </div>
+        <div class="kartu-gelap naik">
+          <div class="ilus" aria-hidden="true">
+            <span class="bingkai"></span><span class="bingkai"></span><span class="bingkai"></span>
+            <svg class="bintang" viewBox="0 0 24 24"><path d="M12 2l2.9 6.3 6.9.7-5.2 4.6 1.5 6.8L12 17l-6.1 3.4 1.5-6.8L2.2 9l6.9-.7z" fill="#F6C350" stroke="#2C2C2A" stroke-width="1.8" stroke-linejoin="round"/></svg>
+          </div>
+          <h3>Etalase karya murid</h3>
+          <p>Karya terbaikmu dipajang di website dan media sosial motionbareng.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== CARA KERJA (krem, demo interaktif) ===== -->
+  <section class="krem" id="cara" data-sobek data-eks="fokus">
+    <div class="intip kanan" style="--atas:70px" aria-hidden="true"></div>
+    <div class="wadah">
+      <div class="kepala-section naik">
+        <span class="kicker">Cara kerja</span>
+        <div class="judul-coret"><h2>Alurnya <span class="stabilo">sesederhana ini</span></h2><span class="coretan">klik langkahnya</span></div>
+        <p>Kamu yang pegang ide dan arah. Alat-alatnya yang kerja keras.</p>
+      </div>
+      <div class="cara">
+        <div class="layar-demo naik" aria-live="polite">
+          <div class="demo aktif" data-demo="0"><span class="label-demo">1 · naskah</span>
+            <div class="kertas-naskah"><b>Kenapa hujan turun?</b><i style="--i:0;width:92%"></i><i style="--i:1;width:78%"></i><i style="--i:2;width:86%"></i><i style="--i:3;width:60%"></i></div>
+          </div>
+          <div class="demo" data-demo="1"><span class="label-demo">2 · arahkan</span>
+            <div class="arahan"><div class="catatan-tempel">explainer 45 detik, gaya sketsa, warna hangat</div>
+              <div class="bingkai-hasil"><span style="--i:0"></span><span style="--i:1"></span><span style="--i:2"></span><span style="--i:3"></span></div></div>
+          </div>
+          <div class="demo" data-demo="2"><span class="label-demo">3 · suara</span>
+            <div class="suara"><div class="gelombang" id="gelombang"></div>
+              <div class="subtitle-demo"><span style="--i:0">awan</span><span style="--i:1">makin</span><span style="--i:2">berat…</span><span style="--i:3">hujan!</span></div></div>
+          </div>
+          <div class="demo" data-demo="3"><span class="label-demo">4 · render</span>
+            <div class="render"><div class="jalur"><i></i></div><div class="berkas">🎬 hujan.mp4 <em>✓ siap upload</em></div></div>
+          </div>
+        </div>
+        <ol class="langkah" role="tablist" aria-label="Langkah membuat video">
+          <li><button type="button" role="tab" aria-selected="true" data-langkah="0"><span class="no">1</span><strong>Tulis naskah</strong><small>Mulai dari ide dan naskah singkat: mau jelasin apa, untuk siapa.</small></button></li>
+          <li><button type="button" role="tab" aria-selected="false" data-langkah="1"><span class="no">2</span><strong>Arahkan Claude Code</strong><small>Claude Code menyusun adegan, ilustrasi, dan gerakannya.</small></button></li>
+          <li><button type="button" role="tab" aria-selected="false" data-langkah="2"><span class="no">3</span><strong>Isi suara</strong><small>ElevenLabs bikin voiceover, efek suara, dan subtitle per kata.</small></button></li>
+          <li><button type="button" role="tab" aria-selected="false" data-langkah="3"><span class="no">4</span><strong>Render jadi MP4</strong><small>Siap upload ke YouTube, Reels, TikTok, atau Shorts.</small></button></li>
+        </ol>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== BUAT SIAPA (malam, tab) ===== -->
+  <section class="malam" id="siapa" data-sobek data-eks="senang">
+    <div class="kunang" data-n="14" aria-hidden="true"></div>
+    <div class="wadah">
+      <div class="kepala-section naik">
+        <span class="kicker">Buat siapa</span>
+        <h2>Cocok buat kamu yang <span class="stabilo">butuh video</span></h2>
+      </div>
+      <div class="tab-daftar" role="tablist" aria-label="Pilih yang paling mirip kamu">
+        <button type="button" role="tab" aria-selected="true" aria-controls="tab-0" id="t-0">Pemula</button>
+        <button type="button" role="tab" aria-selected="false" aria-controls="tab-1" id="t-1">Kreator konten</button>
+        <button type="button" role="tab" aria-selected="false" aria-controls="tab-2" id="t-2">UMKM</button>
+        <button type="button" role="tab" aria-selected="false" aria-controls="tab-3" id="t-3">Guru</button>
+      </div>
+      <div class="tab-isi naik" role="tabpanel" id="tab-0" aria-labelledby="t-0">
+        <div><h3>Belum pernah bikin animasi? Pas.</h3><p>Materinya mulai dari nol, langkah kecil demi langkah kecil.</p>
+          <ul><li>Tanpa After Effects atau Premiere</li><li>Tiap langkah ada contohnya</li><li>Target: video pertamamu jadi di akhir kelas</li></ul></div>
+        <div data-kucing="tab"></div>
+      </div>
+      <div class="tab-isi" role="tabpanel" id="tab-1" aria-labelledby="t-1" hidden>
+        <div><h3>Konten yang beda dari yang lain</h3><p>Explainer dan shorts beranimasi bikin channel-mu lebih gampang diingat.</p>
+          <ul><li>Gaya visual yang konsisten dari video ke video</li><li>Nggak perlu sewa animator tiap upload</li><li>Satu ide bisa jadi versi 16:9 dan 9:16</li></ul></div>
+        <div data-kucing="tab"></div>
+      </div>
+      <div class="tab-isi" role="tabpanel" id="tab-2" aria-labelledby="t-2" hidden>
+        <div><h3>Bikin video promo sendiri</h3><p>Tiap ada produk atau promo baru, videonya bisa kamu bikin sendiri.</p>
+          <ul><li>Format Reels dan TikTok</li><li>Gampang diulang untuk promo berikutnya</li><li>Hemat biaya jasa video</li></ul></div>
+        <div data-kucing="tab"></div>
+      </div>
+      <div class="tab-isi" role="tabpanel" id="tab-3" aria-labelledby="t-3" hidden>
+        <div><h3>Materi jadi video penjelasan</h3><p>Konsep yang susah dijelaskan pakai kata-kata, jadi gampang lewat gambar bergerak.</p>
+          <ul><li>Cocok untuk kelas online maupun tatap muka</li><li>Bahan ajar bisa dipakai berulang</li><li>Murid lebih betah memperhatikan</li></ul></div>
+        <div data-kucing="tab"></div>
+      </div>
+      <p class="kurang">Kurang cocok kalau kamu sedang cari kelas After Effects atau Premiere, atau mau hasil instan tanpa praktik.</p>
+    </div>
+  </section>
+
+  <!-- ===== MATERI (krem, garis waktu) ===== -->
+  <!-- GANTI: sesuaikan judul & isi modul dengan kelasmu yang sebenarnya -->
+  <section class="krem" id="materi" data-sobek data-eks="fokus">
+    <div class="wadah">
+      <div class="kepala-section naik">
+        <span class="kicker">Isi kelas</span>
+        <h2>Dari nol sampai <span class="stabilo">video pertama</span></h2>
+        <p>Disusun bertahap, tiap modul langsung dipraktikkan.</p>
+      </div>
+      <ol class="timeline">
+        <li class="naik"><div class="isi"><h3>Install Claude Code</h3><p>Memasang Claude Code di laptopmu dari nol, lalu kenalan dengan cara kerjanya.</p></div></li>
+        <li class="naik"><div class="isi"><h3>Pasang skill motionbareng</h3><p>Skill siap pakai yang bikin Claude Code langsung paham cara membuat video motion.</p></div></li>
+        <li class="naik"><div class="isi"><h3>Sambungkan ElevenLabs</h3><p>Voiceover, efek suara, dan subtitle per kata, langsung dari Claude Code.</p></div></li>
+        <li class="naik"><div class="isi"><h3>Video pertama: shorts 9:16</h3><p>Tulis idenya, arahkan Claude Code, lalu render jadi MP4 bersuara.</p></div></li>
+        <li class="naik"><div class="isi"><h3>Video explainer 16:9</h3><p>Naskah lebih panjang dan adegan lebih banyak, tetap dikerjakan Claude Code.</p></div></li>
+        <li class="naik"><div class="isi"><h3>Revisi &amp; portofolio</h3><p>Cara minta revisi yang tepat, lalu kumpulkan karya jadi portofolio.</p></div></li>
+      </ol>
+    </div>
+  </section>
+
+  <!-- ===== HARGA (terakota) ===== -->
+  <section class="terakota" id="harga" data-sobek data-eks="kaget">
+    <div class="intip kiri" style="--atas:60px" aria-hidden="true"></div>
+    <div class="wadah">
+      <div class="harga-wadah">
+        <div class="harga-kiri naik">
+          <span class="kicker">Harga</span>
+          <h2>Sekali bayar, <span class="stabilo">langsung mulai</span></h2>
+          <p>Tanpa biaya bulanan dari kami. Harga promo ini berlaku untuk pembeli perdana.</p>
+          <div data-kucing="harga"></div>
+        </div>
+        <div class="kartu-harga naik">
+          <span class="pita" data-isi="labelPromo">Harga promo perdana</span>
+          <h3>Kelas motionbareng</h3>
+          <div class="angka">
+            <span class="promo" data-harga="promo">Rp149.000</span>
+            <s data-harga="normal">Rp249.000</s>
+          </div>
+          <span class="hemat" data-harga="hemat">Hemat Rp100.000</span>
+          <!-- GANTI: pastikan semua poin ini memang didapat pembeli -->
+          <ul class="dapat">
+            <li>Akses semua video materi kelas</li>
+            <li>Sekali bayar, tanpa biaya bulanan dari kami</li>
+            <li>Masuk grup komunitas murid</li>
+            <li>Ikut sesi bikin bareng</li>
+            <li>Kesempatan karyamu dipajang di etalase</li>
+          </ul>
+          <a class="tombol besar" href="#harga" data-checkout>Beli sekarang · <span data-harga="promo">Rp149.000</span></a>
+          <p class="aman">Pembayaran diproses di halaman checkout yang aman.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== FAQ (krem) ===== -->
+  <section class="krem" id="faq" data-sobek data-eks="mikir">
+    <div class="intip kanan" style="--atas:50px" aria-hidden="true"></div>
+    <div class="wadah">
+      <div class="kepala-section naik">
+        <span class="kicker">FAQ</span>
+        <div class="judul-coret"><h2>Yang sering <span class="stabilo">ditanyakan</span></h2><span class="coretan">klik aja</span></div>
+      </div>
+      <div class="faq">
+        <details class="naik"><summary>Harus bisa coding dulu?</summary>
+          <p>Nggak harus. Claude Code yang menulis kodenya. Di kelas kamu belajar cara mengarahkannya dan memeriksa hasilnya.</p></details>
+        <!-- GANTI: sesuaikan dengan isi skill yang kamu bagikan di kelas -->
+        <details class="naik"><summary>Apa itu skill motionbareng?</summary>
+          <p>Paket instruksi siap pakai yang dipasang ke Claude Code. Setelah dipasang, Claude Code langsung paham cara menyusun adegan, animasi, suara, dan render video, jadi kamu tinggal menulis idenya.</p></details>
+        <details class="naik"><summary>Apa saja yang perlu disiapkan?</summary>
+          <p>Laptop atau PC, koneksi internet, langganan Claude yang sudah termasuk Claude Code, dan akun ElevenLabs. ElevenLabs punya paket gratis dengan batas pemakaian.</p></details>
+        <details class="naik"><summary>Bayarnya sekali atau bulanan?</summary>
+          <p>Kelasnya cukup sekali bayar. Langganan Claude dan ElevenLabs terpisah, dibayar langsung ke masing-masing layanan.</p></details>
+        <!-- GANTI: sesuaikan dengan cara akses di platform checkout-mu -->
+        <details class="naik"><summary>Setelah bayar, aksesnya bagaimana?</summary>
+          <p>Setelah pembayaran berhasil, link akses kelas dan grup komunitas dikirim ke email kamu.</p></details>
+        <details class="naik"><summary>Bisa belajar kapan saja?</summary>
+          <p>Bisa. Materinya berupa video, jadi kamu bisa belajar sesuai waktumu sendiri, lalu ikut sesi bikin bareng kalau sempat.</p></details>
+        <details class="naik"><summary>Masih ada pertanyaan lain?</summary>
+          <p>Hubungi kami lewat <span data-kontak>media sosial motionbareng</span>.</p></details>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== PENUTUP (malam) ===== -->
+  <section class="malam penutup" data-sobek data-eks="senang">
+    <div class="kunang" data-n="20" aria-hidden="true"></div>
+    <div class="wadah">
+      <div data-kucing="penutup"></div>
+      <h2>Yuk, bikin video pertamamu <span class="stabilo">bareng.</span></h2>
+      <p>Sekali bayar <strong data-harga="promo">Rp149.000</strong>, langsung mulai belajar hari ini.</p>
+      <a class="tombol kuning besar" href="#harga" data-checkout>Beli kelasnya</a>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="wadah">
+    <div>
+      <a class="logo" href="./"><span data-kucing="kepala"></span><span>motion<span class="b">bareng</span></span></a>
+      <p class="kecil">© <span id="tahun">2026</span> motionbareng. Belajar bikin video motion, bareng-bareng.<br>
+      Claude dan Claude Code adalah merek Anthropic, ElevenLabs adalah merek ElevenLabs. motionbareng tidak berafiliasi dengan keduanya.</p>
+    </div>
+    <div class="sosmed" id="sosmed"></div>
+  </div>
+</footer>
+
+<div class="bar-beli" id="bar-beli">
+  <div class="kucing-bar" id="kucing-bar" data-eks="biasa" aria-hidden="true"></div>
+  <div class="wadah">
+    <div>
+      <div class="harga"><span class="promo" data-harga="promo">Rp149.000</span><s data-harga="normal">Rp249.000</s></div>
+      <div class="ket">Kelas motionbareng · sekali bayar</div>
+    </div>
+    <a class="tombol" href="#harga" data-checkout>Beli kelas</a>
+  </div>
+</div>
+
+<script src="pengaturan.js?v=2"></script>
+<script src="aset/js/umum.js?v=2"></script>
+</body>
+</html>

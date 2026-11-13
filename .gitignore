@@ -1,0 +1,11 @@
+# File sistem
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# Pengaturan pribadi Claude Code (jangan ikut di-upload)
+.claude/settings.local.json
+
+# Editor & dependensi
+.vscode/
+node_modules/

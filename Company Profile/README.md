@@ -17,6 +17,7 @@ Company Profile/
 │           ├── karya/        ← thumbnail contoh karya (karya-1.jpg, dst.)
 │           └── logo/         ← logo resmi alat (Claude, ElevenLabs), opsional
 ├── dokumen/                  ← catatan kerja, TIDAK di-upload
+│   ├── LANGKAH-PUBLISH.md         ← ★ urutan publish: Vercel, pembayaran, isi konten
 │   ├── DATA-YANG-PERLU-DIISI.md   ← daftar centang data yang masih placeholder
 │   ├── PANDUAN-WEBSITE.md         ← cara mengisi, mengubah, dan upload
 │   └── REFERENSI-MOTIONFORMAT.md  ← catatan teknik dari pesaing (bukan untuk ditiru mentah)

@@ -2,12 +2,12 @@
 
 ## Apa ini
 Brand kelas online untuk belajar membuat video motion (explainer & shorts) dengan **Claude Code** + ElevenLabs.
-Model jualan: bayar sekali, akses kelas video tutorial. Materi dimulai dari install Claude Code → pasang skill motionbareng → sambungkan ElevenLabs → bikin video.
+Model jualan: bayar sekali, akses selamanya ke kelas video tutorial (seperti motionformat.com: jual kelas, langsung ada videonya). Materi dimulai dari install Claude Code → pasang skill motionbareng → sambungkan ElevenLabs → bikin video.
 Pemilik: Darva. Status (13 Nov 2026): kelas dinyatakan siap dijual, website jualan sudah dibangun, data asli (link checkout, modul, kontak, karya) masih placeholder.
 
 ## Keputusan yang sudah dikunci
 - Nama brand & username: **motionbareng** (ketersediaan akun IG/TikTok/YouTube belum dicek)
-- Pembeda utama dari pesaing: "bareng" = belajar bersama (grup komunitas, sesi bikin bareng, etalase karya murid)
+- Pembeda utama dari pesaing: "bareng" = dibarengin lewat video tutorial langkah demi langkah (dipandu dari nol, praktik langsung di layar). **Grup komunitas, sesi bikin bareng, dan etalase karya murid DITUNDA** (diputuskan 14 Nov 2026): lihat respons 1 bulan pertama dulu, jangan dijanjikan di website. Akses kelas **selamanya**.
 - Pesan utama: **"Tulis idenya, Claude Code yang bikin animasinya"** (+ "ElevenLabs yang isi suaranya")
 - Harga: Rp249.000 dicoret → **Rp149.000** ("harga promo perdana"). Harga harus sama di semua tempat.
 - Pembayaran lewat **Scalev**. Halaman jualan dipasang sebagai **HTML Checkout Page** di Scalev (formulir di section `#daftar` memanggil `Scalev.checkout.createOrder`). Di luar Scalev (Vercel), tombol beli memakai `linkCheckout` sebagai cadangan.

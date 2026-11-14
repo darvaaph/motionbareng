@@ -15,10 +15,8 @@ Semua path di bawah relatif terhadap folder `Company Profile/`.
   - Sekarang: 6 modul contoh (Install Claude Code, Pasang skill motionbareng, Sambungkan ElevenLabs, Video pertama shorts 9:16, Explainer 16:9, Revisi & portofolio)
   - Siapkan: judul tiap modul + 1 kalimat penjelasan. Jumlah video & total durasi kalau ada.
 
-- [ ] **Yang didapat pembeli**
-  - Di mana: `website/kelas.html` → kartu harga, daftar `class="dapat"` (cari `GANTI:`)
-  - Sekarang: akses semua video, sekali bayar, grup komunitas, sesi bikin bareng, etalase karya
-  - Cek: grup komunitas di mana (WhatsApp / Telegram / Discord)? Sesi bikin bareng seberapa sering? Ada bonus? **Hapus poin yang belum benar-benar ada.**
+- [x] **Yang didapat pembeli**: sudah disesuaikan (14 Nov 2026): akses semua video, akses selamanya, sekali bayar. Grup komunitas, sesi bikin bareng, dan etalase karya dihapus dari halaman (ditunda, evaluasi setelah 1 bulan pertama).
+  - Kalau nanti ada bonus atau komunitas, tambahkan di `website/kelas.html` (kartu harga + section `id="bareng"`) hanya setelah benar-benar ada.
 
 - [ ] **Cara akses setelah bayar**
   - Di mana: `website/kelas.html` → FAQ "Setelah bayar, aksesnya bagaimana?" (cari `GANTI:`)
@@ -29,9 +27,7 @@ Semua path di bawah relatif terhadap folder `Company Profile/`.
   - Di mana: `website/kelas.html` → materi modul 2 dan FAQ "Apa itu skill motionbareng?" (cari `GANTI:`)
   - Pastikan nama skill dan penjelasannya sesuai skill yang benar-benar kamu bagikan di kelas.
 
-- [ ] **Tiga pilar "Kenapa bareng"**
-  - Di mana: `website/kelas.html` → section `id="bareng"`
-  - Pastikan grup komunitas, sesi bikin bareng, dan etalase karya memang ada saat kelas dijual.
+- [x] **Tiga pilar "Kenapa bareng"**: sudah diganti ke Dipandu dari nol, Praktik langsung di layar, Akses selamanya (tidak lagi menjanjikan komunitas).
 
 ## Formulir pembayaran di Scalev
 

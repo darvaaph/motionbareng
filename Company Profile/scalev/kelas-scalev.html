@@ -14,7 +14,7 @@
 <meta property="og:description" content="Kelas online bikin video explainer & shorts beranimasi pakai Claude Code + ElevenLabs. Sekali bayar.">
 <meta property="og:type" content="website">
 <meta name="theme-color" content="#04342C">
-<link rel="icon" href="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjM4IDE4IDEyNCAxMjAiPgogIDxnIHN0cm9rZT0iIzJDMkMyQSIgc3Ryb2tlLXdpZHRoPSI2IiBzdHJva2UtbGluZWpvaW49InJvdW5kIiBzdHJva2UtbGluZWNhcD0icm91bmQiPgogICAgPHBhdGggZmlsbD0iI0ZCRjNFMCIgZD0iTTU0LDc0IEw2MCwyNCBMOTQsNTIgWiIvPgogICAgPHBhdGggZmlsbD0iI0ZCRjNFMCIgZD0iTTEwNiw1MiBMMTM0LDMwIEwxNDYsNzQgWiIvPgogICAgPHBhdGggZmlsbD0iI0Y1QzRCMyIgZD0iTTEzNCwzMCBMMTUyLDQwIEwxNDAsNTAgWiIvPgogICAgPGVsbGlwc2UgZmlsbD0iI0ZCRjNFMCIgY3g9IjEwMCIgY3k9Ijg4IiByeD0iNTQiIHJ5PSI0NCIvPgogICAgPGVsbGlwc2UgY3g9IjgyIiBjeT0iODYiIHJ4PSI3IiByeT0iMTAiIGZpbGw9IiMyQzJDMkEiIHN0cm9rZT0ibm9uZSIvPgogICAgPGVsbGlwc2UgY3g9IjExOCIgY3k9Ijg2IiByeD0iNyIgcnk9IjEwIiBmaWxsPSIjMkMyQzJBIiBzdHJva2U9Im5vbmUiLz4KICAgIDxlbGxpcHNlIGN4PSI2NiIgY3k9IjEwNCIgcng9IjEwIiByeT0iNiIgZmlsbD0iI0YwOTk3QiIgc3Ryb2tlPSJub25lIi8+CiAgICA8ZWxsaXBzZSBjeD0iMTM0IiBjeT0iMTA0IiByeD0iMTAiIHJ5PSI2IiBmaWxsPSIjRjA5OTdCIiBzdHJva2U9Im5vbmUiLz4KICA8L2c+Cjwvc3ZnPgo=" type="image/svg+xml">
+
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@700;800&family=Caveat:wght@700&family=Plus+Jakarta+Sans:wght@400;500;700;800&display=swap" rel="stylesheet">
@@ -44,7 +44,7 @@
 
   /* tekstur serat kertas di seluruh layar */
   .serat{position:fixed;inset:0;pointer-events:none;z-index:60;opacity:.55;mix-blend-mode:multiply;
-    background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='220' height='220'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='3' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 .17 0 0 0 0 .16 0 0 0 0 .14 0 0 0 .09 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E")}
+    }
 
   /* ===== latar section ===== */
   .krem{background:var(--kertas);--sobek:var(--kertas)}
@@ -597,8 +597,9 @@ body.halaman-bio{background:radial-gradient(90% 55% at 50% 0%,#0B4F42 0%,transpa
 .daftar{display:grid;grid-template-columns:1fr 1fr;gap:22px;align-items:start;max-width:1000px;margin:0 auto;
   background:var(--malam-2);border:2.5px solid rgba(246,195,80,.45);border-radius:24px;padding:26px}
 .daftar[hidden]{display:none}
-@media (max-width:860px){.daftar{grid-template-columns:1fr;padding:18px}}
-.daftar-kolom{display:grid;gap:18px}
+@media (max-width:860px){.daftar{grid-template-columns:minmax(0,1fr);padding:18px}}
+@media (max-width:480px){.daftar{padding:14px;border-radius:20px}.opsi-isi{flex-wrap:wrap;row-gap:4px}.opsi-harga b{font-size:20px}}
+.daftar-kolom{display:grid;gap:18px;min-width:0}
 .blok-daftar{border:0;margin:0;padding:0;min-width:0;display:grid;gap:12px}
 .blok-daftar legend{display:flex;align-items:center;gap:10px;font-family:var(--f-judul);font-weight:800;font-size:22px;margin-bottom:12px;padding:0}
 .no-daftar{display:grid;place-items:center;width:32px;height:32px;border-radius:50%;background:var(--kuning);color:var(--tinta);border:2px solid var(--tinta);font-size:17px}
@@ -612,6 +613,9 @@ body.halaman-bio{background:radial-gradient(90% 55% at 50% 0%,#0B4F42 0%,transpa
 .opsi input:checked + .opsi-isi::before{background:var(--kuning);box-shadow:inset 0 0 0 3px var(--malam-2)}
 .opsi input:focus-visible + .opsi-isi{outline:3px solid var(--kuning);outline-offset:2px}
 .opsi-isi strong{font-weight:700;font-size:16px;line-height:1.3}
+.opsi-paket .opsi-isi{flex-direction:column;align-items:flex-start;gap:6px;padding-top:15px}
+.opsi-paket .opsi-isi::before{top:19px;margin-top:0}
+.opsi-desk{font-size:14.5px;line-height:1.5;opacity:.85;font-weight:500}
 .opsi-harga{display:flex;align-items:baseline;gap:8px;white-space:nowrap}
 .opsi-harga s{opacity:.55;font-size:14px}
 .opsi-harga b{font-family:var(--f-judul);font-size:22px;color:var(--kuning)}
@@ -621,6 +625,15 @@ body.halaman-bio{background:radial-gradient(90% 55% at 50% 0%,#0B4F42 0%,transpa
 .isian input{font:inherit;font-weight:500;font-size:16px;color:var(--tinta);background:var(--kertas);border:2.5px solid var(--tinta);border-radius:12px;padding:12px 14px;width:100%}
 .isian input:focus{outline:3px solid var(--kuning);outline-offset:1px}
 .isian input[aria-invalid="true"]{border-color:var(--terakota);outline:3px solid var(--terakota)}
+.buka-kode{background:none;border:0;padding:0;font:inherit;font-family:var(--f-tangan);font-size:20px;color:var(--kuning);text-decoration:underline wavy;text-underline-offset:5px;cursor:pointer}
+.buka-kode:focus-visible,.tombol-kode:focus-visible{outline:3px solid var(--kuning);outline-offset:3px}
+.isi-kode{display:flex;gap:8px;margin-top:10px}
+.isi-kode input{flex:1;min-width:0;font:inherit;font-weight:600;font-size:16px;letter-spacing:.04em;text-transform:uppercase;color:var(--tinta);background:var(--kertas);border:2.5px solid var(--tinta);border-radius:12px;padding:11px 14px}
+.isi-kode input:focus{outline:3px solid var(--kuning);outline-offset:1px}
+.tombol-kode{font:inherit;font-weight:800;color:var(--tinta);background:var(--kuning);border:2.5px solid var(--tinta);border-radius:12px;padding:0 18px;cursor:pointer}
+.tombol-kode:disabled{opacity:.7;cursor:wait}
+.pesan-kode{margin:8px 0 0;font-size:14px;font-weight:600;color:var(--pipi)}
+.pesan-kode[data-ok="1"]{color:var(--kuning)}
 .ringkasan{background:var(--malam-3);border:2px solid rgba(251,243,224,.15);border-radius:14px;padding:14px 16px;display:grid;gap:6px;font-size:15px}
 .ringkasan div{display:flex;justify-content:space-between;gap:12px}
 .ringkasan .total{border-top:2px dashed rgba(251,243,224,.25);padding-top:10px;margin-top:4px;font-family:var(--f-judul);font-weight:800;font-size:22px}
@@ -916,6 +929,14 @@ body.halaman-bio{background:radial-gradient(90% 55% at 50% 0%,#0B4F42 0%,transpa
             <legend><span class="no-daftar">3</span> Metode pembayaran</legend>
             <div class="pilihan" id="pilihan-bayar"></div>
           </fieldset>
+          <div class="kode-diskon">
+            <button type="button" class="buka-kode" id="buka-kode" aria-expanded="false" aria-controls="isi-kode">Punya kode diskon?</button>
+            <div class="isi-kode" id="isi-kode" hidden>
+              <input id="input-kode" name="kode" autocomplete="off" autocapitalize="characters" placeholder="Masukkan kode" aria-label="Kode diskon">
+              <button type="button" class="tombol-kode" id="pakai-kode">Pakai</button>
+            </div>
+            <p class="pesan-kode" id="pesan-kode" role="status" aria-live="polite" hidden></p>
+          </div>
           <div class="ringkasan" id="ringkasan" aria-live="polite"></div>
           <p class="pesan-daftar" id="pesan-daftar" role="alert" hidden></p>
           <button class="tombol kuning besar" type="submit" id="tombol-pesan">Buat pesanan &amp; bayar</button>
@@ -1009,7 +1030,7 @@ window.PENGATURAN = {
      Dipakai kalau halaman jualan dibuka di LUAR Scalev (misalnya di Vercel):
      tombol "Beli" membuka link ini. Kalau halaman jualan dipasang di Scalev
      (HTML Checkout Page), formulir di halaman yang dipakai, bukan link ini. */
-  linkCheckout: "https://motion-bareng.myscalev.com/p/kelas-motionbareng",
+  linkCheckout: "https://motion-bareng.myscalev.com/kelas",
 
   /* ALAMAT (isi setelah website online)
      alamatWebsite       : alamat website di Vercel, tanpa garis miring di akhir.
@@ -1021,7 +1042,7 @@ window.PENGATURAN = {
                            Kalau diisi, semua tautan "Lihat kelasnya" di halaman bio
                            mengarah ke sana. Kosong = pakai kelas.html di Vercel. */
   alamatWebsite: "",
-  alamatHalamanJualan: "",
+  alamatHalamanJualan: "https://motion-bareng.myscalev.com/kelas",
 
   /* LINK HALAMAN BIO (index.html). Kosong = tautannya otomatis disembunyikan.
      linkMasukKelas : alamat area member / login kelas untuk yang sudah beli
@@ -1038,6 +1059,7 @@ window.PENGATURAN = {
   /* 2. HARGA (angka saja, tanpa titik) */
   hargaNormal: 249000,
   hargaPromo: 149000,
+  deskripsiPaket: "Semua video materi: pasang Claude Code, pasang skill motionbareng, sambungkan ElevenLabs, sampai video jadi. Sekali bayar, tanpa biaya bulanan dari kami.",
   labelPromo: "Harga promo perdana",
 
   /* 3. KONTAK & MEDIA SOSIAL (kosongkan "" kalau belum ada, ikonnya otomatis disembunyikan)
@@ -1065,7 +1087,7 @@ window.PENGATURAN = {
   ]
 };
 
-window.PENGATURAN.logoAlat.claude = "data:image/svg+xml;base64,PHN2ZyBmaWxsPSIjRDk3NzU3IiByb2xlPSJpbWciIHZpZXdCb3g9IjAgMCAyNCAyNCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48dGl0bGU+Q2xhdWRlPC90aXRsZT48cGF0aCBkPSJtNC43MTQ0IDE1Ljk1NTUgNC43MTc0LTIuNjQ3MS4wNzktLjIzMDctLjA3OS0uMTI3NWgtLjIzMDdsLS43ODkzLS4wNDg2LTIuNjk1Ni0uMDcyOS0yLjMzNzUtLjA5NzEtMi4yNjQ2LS4xMjE0LS41NzA3LS4xMjE1LS41MzQzLS43MDQyLjA1NDYtLjM1MjIuNDc5Ny0uMzIxOC42ODYuMDYwOCAxLjUxNzkuMTAzMiAyLjI3NjcuMTU3OCAxLjY1MTQuMDk3MiAyLjQ0NjguMjU1aC4zODg2bC4wNTQ2LS4xNTc5LS4xMzM2LS4wOTcxLS4xMDMyLS4wOTcyTDYuOTczIDkuODM1NmwtMi41NS0xLjY4NzktMS4zMzU2LS45NzE0LS43MjI1LS40OTE4LS4zNjQzLS40NjE0LS4xNTc4LTEuMDA3OC42NTU3LS43MjI1Ljg4MDMuMDYwNy4yMjQ2LjA2MDcuODkyNS42ODYgMS45MDY0IDEuNDc1NCAyLjQ4OTMgMS44MzM2LjM2NDMuMzAzNS4xNDU3LS4xMDMyLjAxODItLjA3MjgtLjE2NC0uMjczMy0xLjM1MzktMi40NDY3LTEuNDQ1LTIuNDg5My0uNjQzNS0xLjAzMi0uMTctLjYxOTRjLS4wNjA3LS4yNTUtLjEwMzItLjQ2NzQtLjEwMzItLjcyODVMNi4yODcuMTMzNSA2LjY5OTcgMGwuOTk1Ny4xMzM2LjQxOS4zNjQyLjYxOTIgMS40MTQ3IDEuMDAxOCAyLjIyODIgMS41NTQzIDMuMDI5Ni40NTUzLjg5ODUuMjQyOS44MzE4LjA5MS4yNTVoLjE1Nzl2LS4xNDU3bC4xMjc1LTEuNzA2LjIzNjgtMi4wOTQ3LjIzMDctMi42OTU3LjA3ODktLjc1ODkuMzc2NC0uOTEwNy43NDY4LS40OTE4LjU4MjguMjc5My40Nzk3LjY4Ni0uMDY2OC40NDMzLS4yODUzIDEuODUxNy0uNTU4NiAyLjkwMjEtLjM2NDMgMS45NDI5aC4yMTI1bC4yNDI5LS4yNDI5Ljk4MzUtMS4zMDUzIDEuNjUxNC0yLjA2NDMuNzI4Ni0uODE5Ni44NS0uOTA0Ni41NDY0LS40MzExaDEuMDMyMWwuNzU5IDEuMTI5My0uMzQgMS4xNjU3LTEuMDYyNSAxLjM0NzgtLjg4MDQgMS4xNDE0LTEuMjYyOCAxLjctLjc4OTMgMS4zNi4wNzI5LjEwOTMuMTg4Mi0uMDE4MyAyLjg1MzUtLjYwNyAxLjU0MjEtLjI3OTQgMS44Mzk2LS4zMTU3LjgzMTguMzg4Ni4wOTEuMzk0Ni0uMzI3OC44MDc1LTEuOTY3LjQ4NTctMi4zMDcyLjQ2MTQtMy40MzY0LjgxMzYtLjA0MjUuMDMwNC4wNDg2LjA2MDcgMS41NDgyLjE0NTcuNjYxOC4wMzY0aDEuNjIxbDMuMDE3NS4yMjQ3Ljc4OTIuNTIyLjQ3MzYuNjM3Ni0uMDc5LjQ4NTctMS4yMTQyLjYxOTMtMS42MzkzLS4zODg2LTMuODI1LS45MTA3LTEuMzExMy0uMzI3OWgtLjE4MjJ2LjEwOTNsMS4wOTI5IDEuMDY4NiAyLjAwMzUgMS44MDkyIDIuNTA3NSAyLjMzMTQuMTI3NS41NzY4LS4zMjE4LjQ1NTQtLjM0LS4wNDg2LTIuMjAzOS0xLjY1NzUtLjg1LS43NDY4LTEuOTI0Ni0xLjYyMWgtLjEyNzV2LjE3bC40NDMyLjY0OTYgMi4zNDM2IDMuNTIxNC4xMjE0IDEuMDgwNy0uMTcuMzUyMS0uNjA3MS4yMTI1LS42Njc5LS4xMjE0LTEuMzcyMS0xLjkyNDZMMTQuMzggMTcuOTU5bC0xLjE0MTQtMS45NDI4LS4xMzk3LjA3OS0uNjc0IDcuMjU1Mi0uMzE1Ni4zNzAzLS43Mjg2LjI3OTMtLjYwNzEtLjQ2MTQtLjMyMTgtLjc0NjguMzIxOC0xLjQ3NTMuMzg4Ni0xLjkyNDYuMzE1Ny0xLjUzLjI4NTMtMS45MDA0LjE3LS42MzE0LS4wMTIxLS4wNDI1LS4xMzk3LjAxODItMS40MzI4IDEuOTY3Mi0yLjE3OTYgMi45NDQ2LTEuNzI0MyAxLjg0NTYtLjQxMjguMTY0LS43MTY0LS4zNzA0LjA2NjctLjY2MTguNDAwOC0uNTg4OSAyLjM4Ni0zLjAzNTcgMS40Mzg5LTEuODgyLjkyOS0xLjA4NjgtLjAwNjItLjE1NzloLS4wNTQ2bC02LjMzODUgNC4xMTY0LTEuMTI5My4xNDU3LS40ODU3LS40NTU0LjA2MDgtLjc0NjcuMjMwNy0uMjQyOSAxLjkwNjQtMS4zMTE0WiIvPjwvc3ZnPg==";
+window.PENGATURAN.logoAlat.claude = "";
 </script>
 <script>
 /* Kode bersama untuk index.html (link bio) dan kelas.html (halaman jualan) */
@@ -1386,9 +1408,10 @@ window.PENGATURAN.logoAlat.claude = "data:image/svg+xml;base64,PHN2ZyBmaWxsPSIjR
     }
     if (paket[0].harga !== promo) console.warn(`motionbareng: harga di Scalev (${paket[0].harga}) beda dengan hargaPromo di pengaturan.js (${promo}). Samakan supaya tidak membingungkan pembeli.`);
     $('#pilihan-paket').innerHTML = paket.map((k, i) => `
-      <label class="opsi">
+      <label class="opsi opsi-paket">
         <input type="radio" name="paket" value="${i}" ${i ? '' : 'checked'}>
         <span class="opsi-isi"><strong>${esc(k.nama)}</strong>
+          ${P.deskripsiPaket ? `<span class="opsi-desk">${esc(P.deskripsiPaket)}</span>` : ''}
           <span class="opsi-harga">${k.harga === promo && normal > promo ? `<s>${rp(normal)}</s>` : ''}<b>${rp(k.harga)}</b></span>
         </span>
       </label>`).join('');
@@ -1409,26 +1432,73 @@ window.PENGATURAN.logoAlat.claude = "data:image/svg+xml;base64,PHN2ZyBmaWxsPSIjR
         : { type: 'product', variantUniqueId: k.id, quantity: 1 };
     };
 
-    /* ringkasan biaya: harga paket dulu, lalu total resmi dari Scalev (termasuk biaya metode bayar) */
+    /* ringkasan biaya: harga paket dulu, lalu total resmi dari Scalev (termasuk biaya metode bayar dan kode diskon) */
     const tampilRingkasan = (baris, total, catatan) => {
-      $('#ringkasan').innerHTML = baris.map(([n, v]) => `<div><span>${esc(n)}</span><span>${rp(v)}</span></div>`).join('') +
+      $('#ringkasan').innerHTML = baris.map(([n, v]) => `<div><span>${esc(n)}</span><span>${v < 0 ? '−' + rp(-v) : rp(v)}</span></div>`).join('') +
         `<div class="total"><span>Total</span><span>${rp(total)}</span></div>` + (catatan ? `<small>${esc(catatan)}</small>` : '');
     };
+    const pesanKode = $('#pesan-kode');
+    const infoKode = (teks, ok) => { pesanKode.textContent = teks || ''; pesanKode.dataset.ok = ok ? '1' : ''; pesanKode.hidden = !teks; };
+    let kode = '', diskon = 0, dasar = { gross: 0, produk: 0, ongkir: 0 }, baris = [], catatanRingkas = '';
+    const gambarRingkasan = () => {
+      const b = baris.slice();
+      if (kode && diskon) b.push([`Diskon (${kode})`, -diskon]);
+      tampilRingkasan(b, Math.max(0, dasar.gross - (kode ? diskon : 0)), catatanRingkas);
+    };
+    /* cek kode ke Scalev memakai harga terkini; true kalau kode berlaku */
+    async function cekKode(kodeBaru) {
+      const r = await S.checkout.validateDiscount({
+        discountCode: kodeBaru, grossRevenue: dasar.gross, netProductPrice: dasar.produk,
+        shippingCost: dasar.ongkir, paymentMethod: nilai('bayar')
+      });
+      if (!r || r.isEligible === false) return false;
+      diskon = angka(r.discountCodeDiscount);
+      return true;
+    }
     let urutan = 0;
     async function hitung() {
       const no = ++urutan, k = paket[+nilai('paket') || 0];
-      tampilRingkasan([['Harga paket', k.harga]], k.harga, 'Biaya metode pembayaran (kalau ada) dihitung oleh Scalev.');
-      if (!S.checkout?.estimateSummary || !nilai('bayar')) return;
-      try {
-        const r = await S.checkout.estimateSummary({ items: [itemDipilih()], paymentMethod: nilai('bayar'), allowIncomplete: true });
-        if (no !== urutan || !r || r.isComplete === false) return;
-        const baris = [['Harga paket', angka(r.productPrice)]];
-        if (angka(r.otherIncome)) baris.push([r.otherIncomeName || 'Biaya lain', angka(r.otherIncome)]);
-        if (angka(r.serviceFee)) baris.push(['Biaya layanan', angka(r.serviceFee)]);
-        if (angka(r.shippingCost)) baris.push(['Ongkos kirim', angka(r.shippingCost)]);
-        tampilRingkasan(baris, angka(r.grossRevenue), '');
-      } catch (e) { /* ringkasan sementara tetap tampil */ }
+      dasar = { gross: k.harga, produk: k.harga, ongkir: 0 };
+      baris = [['Harga paket', k.harga]];
+      catatanRingkas = 'Biaya metode pembayaran (kalau ada) dihitung oleh Scalev.';
+      if (S.checkout?.estimateSummary && nilai('bayar')) {
+        try {
+          const r = await S.checkout.estimateSummary({ items: [itemDipilih()], paymentMethod: nilai('bayar'), allowIncomplete: true });
+          if (no !== urutan) return;
+          if (r && r.isComplete !== false) {
+            baris = [['Harga paket', angka(r.productPrice)]];
+            if (angka(r.otherIncome)) baris.push([r.otherIncomeName || 'Biaya lain', angka(r.otherIncome)]);
+            if (angka(r.serviceFee)) baris.push(['Biaya layanan', angka(r.serviceFee)]);
+            if (angka(r.shippingCost)) baris.push(['Ongkos kirim', angka(r.shippingCost)]);
+            dasar = { gross: angka(r.grossRevenue), produk: angka(r.productPrice), ongkir: angka(r.shippingCost) };
+            catatanRingkas = '';
+          }
+        } catch (e) { /* ringkasan sementara tetap tampil */ }
+      }
+      if (kode) {
+        try { if (!(await cekKode(kode))) throw 0; }
+        catch (e) { if (no !== urutan) return; kode = ''; diskon = 0; infoKode('Kode diskon tidak berlaku untuk pilihan ini.', false); }
+      }
+      if (no === urutan) gambarRingkasan();
     }
+
+    /* kode diskon */
+    const bukaKode = $('#buka-kode'), isiKode = $('#isi-kode'), inputKode = $('#input-kode'), pakaiKode = $('#pakai-kode');
+    bukaKode.addEventListener('click', () => { isiKode.hidden = !isiKode.hidden; bukaKode.setAttribute('aria-expanded', String(!isiKode.hidden)); if (!isiKode.hidden) inputKode.focus(); });
+    async function pakai() {
+      const baru = inputKode.value.trim().toUpperCase();
+      if (!baru) { kode = ''; diskon = 0; infoKode(''); gambarRingkasan(); return; }
+      if (!S.checkout?.validateDiscount) return infoKode('Kode diskon belum bisa dicek di halaman ini.', false);
+      pakaiKode.disabled = true; pakaiKode.textContent = 'Mengecek…';
+      try {
+        if (await cekKode(baru)) { kode = baru; infoKode(`Kode ${baru} dipakai. Hemat ${rp(diskon)}.`, true); }
+        else { kode = ''; diskon = 0; infoKode('Kode tidak berlaku atau sudah habis.', false); }
+      } catch (e) { kode = ''; diskon = 0; infoKode((e && e.message) || 'Kode tidak berlaku atau sudah habis.', false); }
+      pakaiKode.disabled = false; pakaiKode.textContent = 'Pakai';
+      gambarRingkasan();
+    }
+    pakaiKode.addEventListener('click', pakai);
+    inputKode.addEventListener('keydown', e => { if (e.key === 'Enter') { e.preventDefault(); pakai(); } });
     f.addEventListener('change', e => { if (e.target.name === 'paket' || e.target.name === 'bayar') hitung(); });
     hitung();
 
@@ -1460,7 +1530,8 @@ window.PENGATURAN.logoAlat.claude = "data:image/svg+xml;base64,PHN2ZyBmaWxsPSIjR
         const order = await S.checkout.createOrder({
           customer: { name: nama, phone: wa, email },
           paymentMethod: nilai('bayar'),
-          items: [itemDipilih()]
+          items: [itemDipilih()],
+          ...(kode ? { discountCode: kode } : {})
         });
         const tujuan = String(order?.redirectUrl || '').trim();
         if (tujuan) { tombol.textContent = 'Mengarahkan ke pembayaran…'; location.assign(tujuan); return; }

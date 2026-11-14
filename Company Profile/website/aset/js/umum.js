@@ -316,9 +316,10 @@
     }
     if (paket[0].harga !== promo) console.warn(`motionbareng: harga di Scalev (${paket[0].harga}) beda dengan hargaPromo di pengaturan.js (${promo}). Samakan supaya tidak membingungkan pembeli.`);
     $('#pilihan-paket').innerHTML = paket.map((k, i) => `
-      <label class="opsi">
+      <label class="opsi opsi-paket">
         <input type="radio" name="paket" value="${i}" ${i ? '' : 'checked'}>
         <span class="opsi-isi"><strong>${esc(k.nama)}</strong>
+          ${P.deskripsiPaket ? `<span class="opsi-desk">${esc(P.deskripsiPaket)}</span>` : ''}
           <span class="opsi-harga">${k.harga === promo && normal > promo ? `<s>${rp(normal)}</s>` : ''}<b>${rp(k.harga)}</b></span>
         </span>
       </label>`).join('');
@@ -339,26 +340,73 @@
         : { type: 'product', variantUniqueId: k.id, quantity: 1 };
     };
 
-    /* ringkasan biaya: harga paket dulu, lalu total resmi dari Scalev (termasuk biaya metode bayar) */
+    /* ringkasan biaya: harga paket dulu, lalu total resmi dari Scalev (termasuk biaya metode bayar dan kode diskon) */
     const tampilRingkasan = (baris, total, catatan) => {
-      $('#ringkasan').innerHTML = baris.map(([n, v]) => `<div><span>${esc(n)}</span><span>${rp(v)}</span></div>`).join('') +
+      $('#ringkasan').innerHTML = baris.map(([n, v]) => `<div><span>${esc(n)}</span><span>${v < 0 ? '−' + rp(-v) : rp(v)}</span></div>`).join('') +
         `<div class="total"><span>Total</span><span>${rp(total)}</span></div>` + (catatan ? `<small>${esc(catatan)}</small>` : '');
     };
+    const pesanKode = $('#pesan-kode');
+    const infoKode = (teks, ok) => { pesanKode.textContent = teks || ''; pesanKode.dataset.ok = ok ? '1' : ''; pesanKode.hidden = !teks; };
+    let kode = '', diskon = 0, dasar = { gross: 0, produk: 0, ongkir: 0 }, baris = [], catatanRingkas = '';
+    const gambarRingkasan = () => {
+      const b = baris.slice();
+      if (kode && diskon) b.push([`Diskon (${kode})`, -diskon]);
+      tampilRingkasan(b, Math.max(0, dasar.gross - (kode ? diskon : 0)), catatanRingkas);
+    };
+    /* cek kode ke Scalev memakai harga terkini; true kalau kode berlaku */
+    async function cekKode(kodeBaru) {
+      const r = await S.checkout.validateDiscount({
+        discountCode: kodeBaru, grossRevenue: dasar.gross, netProductPrice: dasar.produk,
+        shippingCost: dasar.ongkir, paymentMethod: nilai('bayar')
+      });
+      if (!r || r.isEligible === false) return false;
+      diskon = angka(r.discountCodeDiscount);
+      return true;
+    }
     let urutan = 0;
     async function hitung() {
       const no = ++urutan, k = paket[+nilai('paket') || 0];
-      tampilRingkasan([['Harga paket', k.harga]], k.harga, 'Biaya metode pembayaran (kalau ada) dihitung oleh Scalev.');
-      if (!S.checkout?.estimateSummary || !nilai('bayar')) return;
-      try {
-        const r = await S.checkout.estimateSummary({ items: [itemDipilih()], paymentMethod: nilai('bayar'), allowIncomplete: true });
-        if (no !== urutan || !r || r.isComplete === false) return;
-        const baris = [['Harga paket', angka(r.productPrice)]];
-        if (angka(r.otherIncome)) baris.push([r.otherIncomeName || 'Biaya lain', angka(r.otherIncome)]);
-        if (angka(r.serviceFee)) baris.push(['Biaya layanan', angka(r.serviceFee)]);
-        if (angka(r.shippingCost)) baris.push(['Ongkos kirim', angka(r.shippingCost)]);
-        tampilRingkasan(baris, angka(r.grossRevenue), '');
-      } catch (e) { /* ringkasan sementara tetap tampil */ }
+      dasar = { gross: k.harga, produk: k.harga, ongkir: 0 };
+      baris = [['Harga paket', k.harga]];
+      catatanRingkas = 'Biaya metode pembayaran (kalau ada) dihitung oleh Scalev.';
+      if (S.checkout?.estimateSummary && nilai('bayar')) {
+        try {
+          const r = await S.checkout.estimateSummary({ items: [itemDipilih()], paymentMethod: nilai('bayar'), allowIncomplete: true });
+          if (no !== urutan) return;
+          if (r && r.isComplete !== false) {
+            baris = [['Harga paket', angka(r.productPrice)]];
+            if (angka(r.otherIncome)) baris.push([r.otherIncomeName || 'Biaya lain', angka(r.otherIncome)]);
+            if (angka(r.serviceFee)) baris.push(['Biaya layanan', angka(r.serviceFee)]);
+            if (angka(r.shippingCost)) baris.push(['Ongkos kirim', angka(r.shippingCost)]);
+            dasar = { gross: angka(r.grossRevenue), produk: angka(r.productPrice), ongkir: angka(r.shippingCost) };
+            catatanRingkas = '';
+          }
+        } catch (e) { /* ringkasan sementara tetap tampil */ }
+      }
+      if (kode) {
+        try { if (!(await cekKode(kode))) throw 0; }
+        catch (e) { if (no !== urutan) return; kode = ''; diskon = 0; infoKode('Kode diskon tidak berlaku untuk pilihan ini.', false); }
+      }
+      if (no === urutan) gambarRingkasan();
     }
+
+    /* kode diskon */
+    const bukaKode = $('#buka-kode'), isiKode = $('#isi-kode'), inputKode = $('#input-kode'), pakaiKode = $('#pakai-kode');
+    bukaKode.addEventListener('click', () => { isiKode.hidden = !isiKode.hidden; bukaKode.setAttribute('aria-expanded', String(!isiKode.hidden)); if (!isiKode.hidden) inputKode.focus(); });
+    async function pakai() {
+      const baru = inputKode.value.trim().toUpperCase();
+      if (!baru) { kode = ''; diskon = 0; infoKode(''); gambarRingkasan(); return; }
+      if (!S.checkout?.validateDiscount) return infoKode('Kode diskon belum bisa dicek di halaman ini.', false);
+      pakaiKode.disabled = true; pakaiKode.textContent = 'Mengecek…';
+      try {
+        if (await cekKode(baru)) { kode = baru; infoKode(`Kode ${baru} dipakai. Hemat ${rp(diskon)}.`, true); }
+        else { kode = ''; diskon = 0; infoKode('Kode tidak berlaku atau sudah habis.', false); }
+      } catch (e) { kode = ''; diskon = 0; infoKode((e && e.message) || 'Kode tidak berlaku atau sudah habis.', false); }
+      pakaiKode.disabled = false; pakaiKode.textContent = 'Pakai';
+      gambarRingkasan();
+    }
+    pakaiKode.addEventListener('click', pakai);
+    inputKode.addEventListener('keydown', e => { if (e.key === 'Enter') { e.preventDefault(); pakai(); } });
     f.addEventListener('change', e => { if (e.target.name === 'paket' || e.target.name === 'bayar') hitung(); });
     hitung();
 
@@ -390,7 +438,8 @@
         const order = await S.checkout.createOrder({
           customer: { name: nama, phone: wa, email },
           paymentMethod: nilai('bayar'),
-          items: [itemDipilih()]
+          items: [itemDipilih()],
+          ...(kode ? { discountCode: kode } : {})
         });
         const tujuan = String(order?.redirectUrl || '').trim();
         if (tujuan) { tombol.textContent = 'Mengarahkan ke pembayaran…'; location.assign(tujuan); return; }

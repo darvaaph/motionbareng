@@ -14,7 +14,7 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@700;800&family=Caveat:wght@700&family=Plus+Jakarta+Sans:wght@400;500;700;800&display=swap" rel="stylesheet">
 <script>document.documentElement.classList.add('js')</script>
-<link rel="stylesheet" href="aset/css/gaya.css?v=3">
+<link rel="stylesheet" href="aset/css/gaya.css?v=6">
 </head>
 <body>
 
@@ -291,6 +291,14 @@
             <legend><span class="no-daftar">3</span> Metode pembayaran</legend>
             <div class="pilihan" id="pilihan-bayar"></div>
           </fieldset>
+          <div class="kode-diskon">
+            <button type="button" class="buka-kode" id="buka-kode" aria-expanded="false" aria-controls="isi-kode">Punya kode diskon?</button>
+            <div class="isi-kode" id="isi-kode" hidden>
+              <input id="input-kode" name="kode" autocomplete="off" autocapitalize="characters" placeholder="Masukkan kode" aria-label="Kode diskon">
+              <button type="button" class="tombol-kode" id="pakai-kode">Pakai</button>
+            </div>
+            <p class="pesan-kode" id="pesan-kode" role="status" aria-live="polite" hidden></p>
+          </div>
           <div class="ringkasan" id="ringkasan" aria-live="polite"></div>
           <p class="pesan-daftar" id="pesan-daftar" role="alert" hidden></p>
           <button class="tombol kuning besar" type="submit" id="tombol-pesan">Buat pesanan &amp; bayar</button>
@@ -372,7 +380,7 @@
   </div>
 </div>
 
-<script src="pengaturan.js?v=3"></script>
-<script src="aset/js/umum.js?v=3"></script>
+<script src="pengaturan.js?v=5"></script>
+<script src="aset/js/umum.js?v=4"></script>
 </body>
 </html>

@@ -9,7 +9,7 @@ window.PENGATURAN = {
      Dipakai kalau halaman jualan dibuka di LUAR Scalev (misalnya di Vercel):
      tombol "Beli" membuka link ini. Kalau halaman jualan dipasang di Scalev
      (HTML Checkout Page), formulir di halaman yang dipakai, bukan link ini. */
-  linkCheckout: "https://motion-bareng.myscalev.com/p/kelas-motionbareng",
+  linkCheckout: "https://motion-bareng.myscalev.com/kelas",
 
   /* ALAMAT (isi setelah website online)
      alamatWebsite       : alamat website di Vercel, tanpa garis miring di akhir.
@@ -21,7 +21,7 @@ window.PENGATURAN = {
                            Kalau diisi, semua tautan "Lihat kelasnya" di halaman bio
                            mengarah ke sana. Kosong = pakai kelas.html di Vercel. */
   alamatWebsite: "",
-  alamatHalamanJualan: "",
+  alamatHalamanJualan: "https://motion-bareng.myscalev.com/kelas",
 
   /* LINK HALAMAN BIO (index.html). Kosong = tautannya otomatis disembunyikan.
      linkMasukKelas : alamat area member / login kelas untuk yang sudah beli
@@ -38,6 +38,7 @@ window.PENGATURAN = {
   /* 2. HARGA (angka saja, tanpa titik) */
   hargaNormal: 249000,
   hargaPromo: 149000,
+  deskripsiPaket: "Semua video materi: pasang Claude Code, pasang skill motionbareng, sambungkan ElevenLabs, sampai video jadi. Sekali bayar, tanpa biaya bulanan dari kami.",
   labelPromo: "Harga promo perdana",
 
   /* 3. KONTAK & MEDIA SOSIAL (kosongkan "" kalau belum ada, ikonnya otomatis disembunyikan)

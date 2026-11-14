@@ -50,12 +50,19 @@ def main() -> None:
     pengaturan = baca(WEB / "pengaturan.js")
     umum = baca(WEB / "aset" / "js" / "umum.js")
 
-    # logo alat (aset/gambar/logo/...) dimasukkan sebagai data URI supaya tidak perlu izin gambar eksternal
+    # Scalev menolak gambar tertanam berformat SVG (data URI). Logo alat dipakai lewat URL CDN Scalev:
+    # upload logo di tab Media, lalu isi alat/logo-scalev.json, contoh: {"claude": "https://....png"}.
+    # Kalau URL belum ada, logo dikosongkan dan halaman memakai ikon netral.
+    file_url = AKAR / "alat" / "logo-scalev.json"
+    url_logo = json.loads(baca(file_url)) if file_url.exists() else {}
     tambahan = []
-    for nama, path in re.findall(r'(\w+)\s*:\s*"(aset/gambar/logo/[^"]+)"', pengaturan):
-        file_logo = WEB / path
-        if file_logo.exists():
-            tambahan.append(f"window.PENGATURAN.logoAlat.{nama} = {json.dumps(data_uri(file_logo))};")
+    for nama, _path in re.findall(r'(\w+)\s*:\s*"(aset/gambar/logo/[^"]+)"', pengaturan):
+        tambahan.append(f"window.PENGATURAN.logoAlat.{nama} = {json.dumps(url_logo.get(nama, ''))};")
+
+    # tekstur serat berupa SVG tertanam ditolak Scalev: buang di versi Scalev saja (di website/ tetap ada)
+    css, jumlah = re.subn(r'background-image:url\("data:image/svg\+xml[^"]*"\)', "", css)
+    if jumlah != 1:
+        raise SystemExit(f"GAGAL: tekstur serat tidak ditemukan tepat satu kali di gaya.css (ketemu {jumlah}).")
 
     html = ganti(r'<link rel="stylesheet" href="aset/css/gaya\.css[^"]*">',
                  "<style>\n" + css + "\n</style>", html, "gaya.css")
@@ -63,8 +70,8 @@ def main() -> None:
                  "<script>\n" + aman_untuk_script(pengaturan) + "\n" + "\n".join(tambahan) + "\n</script>", html, "pengaturan.js")
     html = ganti(r'<script src="aset/js/umum\.js[^"]*"></script>',
                  "<script>\n" + aman_untuk_script(umum) + "\n</script>", html, "umum.js")
-    html = ganti(r'<link rel="icon" href="favicon\.svg"[^>]*>',
-                 f'<link rel="icon" href="{data_uri(WEB / "favicon.svg")}" type="image/svg+xml">', html, "favicon")
+    # favicon SVG tertanam ditolak Scalev: hapus tag-nya, atur favicon lewat Settings di Scalev
+    html = ganti(r'<link rel="icon" href="favicon\.svg"[^>]*>', "", html, "favicon")
 
     catatan = ("<!--\n  FILE INI DIBUAT OTOMATIS oleh alat/buat-halaman-scalev.py dari website/kelas.html.\n"
                "  Jangan diedit langsung: ubah file di folder website/, lalu jalankan skripnya lagi.\n-->\n")

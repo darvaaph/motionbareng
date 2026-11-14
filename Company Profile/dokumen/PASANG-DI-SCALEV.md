@@ -29,20 +29,16 @@ Hasilnya `Company Profile/scalev/kelas-scalev.html`. File ini **jangan diedit la
 
 ## Langkah 2: buat halaman di Scalev
 
-1. Di dashboard Scalev buka **Pages**, lalu buat halaman baru dengan tipe **HTML Checkout Page**.
-   Pilih tipe ini, **bukan** "HTML Sales Page", karena Sales Page tidak bisa membuat pesanan. Tipenya tidak bisa diubah setelah dibuat.
-2. Tab **Context**:
-   - **Store Context**: pilih tokomu. Pilihan ini terkunci setelah disimpan pertama kali.
-   - **Products**: pilih produk "Kelas motionbareng".
-   - **Aksi setelah checkout**: pilih ke halaman instruksi pembayaran (paling aman).
-3. Tab **Code**: **Upload File**, lalu pilih `kelas-scalev.html`.
-4. Tab **Security**: izinkan domain berikut supaya font tampil:
-   - `style_src`: `https://fonts.googleapis.com`
-   - `font_src`: `https://fonts.gstatic.com`
-   - Kalau gambar karya dimuat dari Vercel, tambahkan alamat Vercel-mu di `img_src`.
-   Cek juga bagian **Dependencies and diagnostics**: kalau masih ada domain yang diblokir, izinkan di sini.
-5. Tab **Setting**: isi nama halaman, **slug** (misalnya `kelas`), judul SEO, lalu **Simpan**.
-6. Lihat pratinjau, lalu **Publish**.
+1. Di dashboard Scalev buka **Checkout Flows**, klik buat baru, lalu pindah ke **HTML Mode** (pojok kanan atas).
+   Jangan pakai **Landing Pages**: tipe itu tidak punya pilihan toko dan produk, jadi formulir tidak bisa membuat pesanan.
+2. Pilih toko di bagian atas studio. Di panel **Sumber Produk**, pastikan produk "Kelas motionbareng" terpilih.
+   Tab **After Checkout**: tujuan setelah form dikirim = **Instruksi Pembayaran** (bawaan, tidak perlu diubah).
+3. Tab **Code**: **Upload File**, lalu pilih `scalev/kelas-scalev.html`.
+   Scalev menolak gambar SVG yang tertanam di HTML. Skrip pembuat halaman sudah membuang favicon, logo SVG, dan tekstur serat dari versi Scalev.
+4. Tab **Security**: biarkan kosong. Google Fonts (`fonts.googleapis.com`) sudah diizinkan otomatis oleh Scalev.
+   Isi hanya kalau ada yang diblokir (cek konsol browser): gambar dari Vercel masuk ke Image Sources, `fonts.gstatic.com` ke Font Sources.
+5. Tab **Settings**: nama halaman `Kelas motionbareng`, **slug** `kelas`, judul SEO, lalu **Simpan**.
+6. **Simpan & Terbitkan**. Alamat jadinya: `https://motion-bareng.myscalev.com/kelas`.
 
 > Di pratinjau editor, pesanan hanya **simulasi**. Pesanan sungguhan baru terjadi di halaman yang sudah di-publish.
 

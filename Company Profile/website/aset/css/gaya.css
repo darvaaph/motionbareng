@@ -375,8 +375,10 @@
   .kecil{opacity:.7;font-size:13px;max-width:560px}
 
   /* ===== bar beli + kucing yang ngintip di atasnya ===== */
-  .bar-beli{position:fixed;left:0;right:0;bottom:0;z-index:55;background:var(--kertas);border-top:2.5px solid var(--tinta);transform:translateY(110%);transition:transform .35s}
-  .bar-beli.tampil{transform:none}
+  .bar-beli{position:fixed;left:0;right:0;bottom:0;z-index:55;background:var(--kertas);border-top:2.5px solid var(--tinta);
+    padding-bottom:env(safe-area-inset-bottom);will-change:transform;
+    -webkit-transform:translate3d(0,calc(100% + 24px),0);transform:translate3d(0,calc(100% + 24px),0);transition:transform .35s,visibility 0s .35s;visibility:hidden}
+  .bar-beli.tampil{-webkit-transform:translate3d(0,0,0);transform:translate3d(0,0,0);transition:transform .35s,visibility 0s;visibility:visible}
   .bar-beli .wadah{display:flex;align-items:center;justify-content:space-between;gap:12px;height:66px;padding-left:120px}
   .bar-beli .harga{display:flex;align-items:baseline;gap:10px}
   .bar-beli .promo{font-family:var(--f-judul);font-weight:800;font-size:26px;line-height:1}

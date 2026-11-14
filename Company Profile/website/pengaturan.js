@@ -20,7 +20,7 @@ window.PENGATURAN = {
                            Contoh: "https://motion-bareng.myscalev.com/kelas"
                            Kalau diisi, semua tautan "Lihat kelasnya" di halaman bio
                            mengarah ke sana. Kosong = pakai kelas.html di Vercel. */
-  alamatWebsite: "",
+  alamatWebsite: "https://motionbareng-website.vercel.app",
   alamatHalamanJualan: "https://motion-bareng.myscalev.com/kelas",
 
   /* LINK HALAMAN BIO (index.html). Kosong = tautannya otomatis disembunyikan.

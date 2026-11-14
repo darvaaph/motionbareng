@@ -4,8 +4,30 @@
     {
       "name": "website",
       "runtimeExecutable": "python",
-      "runtimeArgs": ["-m", "http.server", "8765", "--bind", "127.0.0.1", "--directory", "F:/Motion Bareng/Company Profile/website"],
+      "runtimeArgs": [
+        "-m",
+        "http.server",
+        "8765",
+        "--bind",
+        "127.0.0.1",
+        "--directory",
+        "F:/Motion Bareng/Company Profile/website"
+      ],
       "port": 8765
+    },
+    {
+      "name": "member",
+      "runtimeExecutable": "python",
+      "runtimeArgs": [
+        "-m",
+        "http.server",
+        "8766",
+        "--bind",
+        "127.0.0.1",
+        "--directory",
+        "F:/Motion Bareng/Company Profile/member"
+      ],
+      "port": 8766
     }
   ]
 }

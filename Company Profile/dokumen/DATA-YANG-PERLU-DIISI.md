@@ -65,6 +65,22 @@ Semua path di bawah relatif terhadap folder `Company Profile/`.
   - Sekarang: penanda "ElevenLabs" memakai ikon netral.
   - Kalau mau logo resmi: taruh filenya di `website/aset/gambar/logo/`, lalu isi `logoAlat.elevenlabs` di `website/pengaturan.js`.
 
+## Area member (`member/`)
+
+Cara mengisi: `dokumen/PANDUAN-AREA-MEMBER.md`. Semua titik di bawah ditandai `GANTI:` di kode.
+
+- [ ] **Kata sandi asli** → `member/pengaturan.js` → `hashKataSandi` (sekarang masih hash kata sandi UJI)
+- [ ] **Kontak bantuan** → `member/pengaturan.js` → `whatsapp`, `email` (kosong = Bantuan menulis "sedang disiapkan")
+- [ ] **Domain area member** → `member/pengaturan.js` → `alamatMember`, lalu `website/pengaturan.js` → `linkMasukKelas`
+- [ ] **Video pelajaran** → `member/data/kelas-data.js` → `youtubeId` + `segeraHadir: false` (28 pelajaran, semua masih kosong)
+- [ ] **Judul, urutan, dan durasi pelajaran** → masih usulan PRD bagian 9 (`menit` = perkiraan)
+- [ ] **File skill motionbareng** → `member/data/kelas-data.js` → `unduhan[0].url`
+- [ ] **Prompt Rak Gaya & Gudang Prompt** → masih draf berlabel CONTOH. Uji di Claude Code, lalu `contoh: false`
+- [ ] **Gambar contoh Rak Gaya** → sekarang kucing sementara, isi `gambar`
+- [ ] **Kabar Baru** → hapus entri CONTOH saat ada kabar sungguhan
+- [ ] **Scalev** → pengiriman produk digital berisi link area member + kata sandi; produk tanpa masa berlaku
+- [ ] **Tes di iPhone (Safari)** → daftar cek di `PANDUAN-AREA-MEMBER.md`
+
 ## Perlu dicek ulang
 
 - [ ] **FAQ "Apa saja yang perlu disiapkan?"**: pastikan paket langganan Claude yang kamu sarankan memang sudah termasuk Claude Code, dan ElevenLabs masih punya paket gratis.

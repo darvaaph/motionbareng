@@ -347,6 +347,7 @@
     };
     const pesanKode = $('#pesan-kode');
     const infoKode = (teks, ok) => { pesanKode.textContent = teks || ''; pesanKode.dataset.ok = ok ? '1' : ''; pesanKode.hidden = !teks; };
+    const TOTAL_MIN = 10000;
     let kode = '', diskon = 0, dasar = { gross: 0, produk: 0, ongkir: 0 }, baris = [], catatanRingkas = '';
     const gambarRingkasan = () => {
       const b = baris.slice();
@@ -361,6 +362,8 @@
       });
       if (!r || r.isEligible === false) return false;
       diskon = angka(r.discountCodeDiscount);
+      /* Scalev menolak pesanan dengan total di bawah Rp10.000 (termasuk diskon 100%) */
+      if (dasar.gross - diskon < TOTAL_MIN) { diskon = 0; throw new Error('Kode ini membuat total pesanan di bawah ' + rp(TOTAL_MIN) + ', jadi belum bisa dipakai. Coba kode lain.'); }
       return true;
     }
     let urutan = 0;
@@ -453,7 +456,10 @@
           return;
         }
         terkunci = false; tombol.disabled = false; tombol.textContent = teksTombol;
-        tampilPesan((err && err.message) || 'Pesanan gagal dibuat. Coba lagi sebentar lagi.');
+        const teksErr = (err && err.message) || '';
+        tampilPesan(/gross_revenue/i.test(teksErr)
+          ? 'Total pesanan minimal ' + rp(TOTAL_MIN) + '. Coba kode diskon lain atau hapus kodenya.'
+          : (teksErr || 'Pesanan gagal dibuat. Coba lagi sebentar lagi.'));
       }
     });
   }

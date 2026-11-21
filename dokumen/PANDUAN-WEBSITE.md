@@ -1,6 +1,6 @@
 # Panduan website motionbareng
 
-Website ada di folder `Company Profile/website/`, dan terdiri dari dua halaman. Peta folder lengkap ada di `Company Profile/README.md`.
+Website ada di folder `website/`, dan terdiri dari dua halaman. Peta folder lengkap ada di `README.md`.
 
 | File | Gunanya |
 |---|---|

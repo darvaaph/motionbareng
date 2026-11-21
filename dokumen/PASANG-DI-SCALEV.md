@@ -22,10 +22,10 @@ Kode formulirnya sama. Halaman otomatis memakai formulir kalau dibuka di Scalev,
 Setiap kali isi website berubah, jalankan:
 
 ```bash
-python "F:/Motion Bareng/Company Profile/alat/buat-halaman-scalev.py"
+python "F:/motionbareng/repos/web-motionbareng/alat/buat-halaman-scalev.py"
 ```
 
-Hasilnya `Company Profile/scalev/kelas-scalev.html`. File ini **jangan diedit langsung**. Ubah file di folder `website/`, lalu jalankan skripnya lagi.
+Hasilnya `scalev/kelas-scalev.html`. File ini **jangan diedit langsung**. Ubah file di folder `website/`, lalu jalankan skripnya lagi.
 
 ## Langkah 2: buat halaman di Scalev
 

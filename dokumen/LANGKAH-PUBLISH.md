@@ -21,7 +21,7 @@ Kenapa Vercel: gratis untuk website seperti ini, langsung tersambung ke GitHub, 
    - Kalau repo tidak muncul: klik *Adjust GitHub App Permissions*, lalu beri izin ke repo `motionbareng`.
 4. Di halaman **Configure Project**:
    - **Framework Preset**: `Other`
-   - **Root Directory**: klik **Edit**, lalu pilih folder `Company Profile/website` ← **penting**
+   - **Root Directory**: klik **Edit**, lalu pilih folder `website` ← **penting**
    - **Build Command** dan **Output Directory**: biarkan kosong
 5. Klik **Deploy**. Tunggu sampai muncul tulisan selamat.
 6. Kamu dapat alamat seperti `motionbareng.vercel.app` (namanya bisa sedikit beda kalau sudah dipakai orang).
@@ -66,7 +66,7 @@ Biaya per transaksi dan syarat verifikasi tiap platform berbeda dan bisa berubah
    - Email atau halaman "terima kasih" berisi **link akses kelas** dan **link grup komunitas**.
    - Selama website kelas (member area) belum jadi, aksesnya bisa lewat fitur kelas di platform itu (kalau ada) atau link sementara (misalnya playlist YouTube *unlisted*).
 4. **Salin link checkout** produk itu.
-5. **Tempel di website**: buka `Company Profile/website/pengaturan.js`, lalu isi:
+5. **Tempel di website**: buka `website/pengaturan.js`, lalu isi:
    ```js
    linkCheckout: "https://…link-checkout-kamu…",
    ```
@@ -85,24 +85,24 @@ Semua daftar yang harus diisi ada di `dokumen/DATA-YANG-PERLU-DIISI.md`. Ada dua
 
 ### Cara A: langsung di GitHub (tanpa install apa pun)
 
-1. Buka https://github.com/darvaaph/motionbareng → masuk ke folder `Company Profile/website`.
+1. Buka https://github.com/darvaaph/motionbareng → masuk ke folder `website`.
 2. Klik file yang mau diubah (misalnya `pengaturan.js`) → klik ikon **pensil** (Edit).
 3. Ubah isinya → klik **Commit changes…** → **Commit changes**.
 4. Tunggu ±1 menit, Vercel otomatis memperbarui website.
 
-**Upload thumbnail karya:** masuk ke `Company Profile/website/aset/gambar/karya` → **Add file → Upload files** → seret gambarnya → **Commit changes**. Setelah itu tulis path-nya di `pengaturan.js`, misalnya `gambar: "aset/gambar/karya/karya-1.jpg"`.
+**Upload thumbnail karya:** masuk ke `website/aset/gambar/karya` → **Add file → Upload files** → seret gambarnya → **Commit changes**. Setelah itu tulis path-nya di `pengaturan.js`, misalnya `gambar: "aset/gambar/karya/karya-1.jpg"`.
 
 ### Cara B: di laptop (pakai Claude Code / editor)
 
-1. Ubah file di folder `F:\Motion Bareng\Company Profile\website`.
+1. Ubah file di folder `F:\motionbareng\repos\web-motionbareng\website`.
 2. Lihat hasilnya dulu di laptop:
    ```bash
-   python -m http.server 8765 --directory "F:/Motion Bareng/Company Profile/website"
+   python -m http.server 8765 --directory "F:/motionbareng/repos/web-motionbareng/website"
    ```
    Lalu buka http://localhost:8765.
 3. Kirim ke GitHub (Vercel ikut ter-update):
    ```bash
-   cd "F:/Motion Bareng"
+   cd "F:/motionbareng/repos/web-motionbareng"
    git add -A
    git commit -m "Isi data asli: link checkout dan materi"
    git push

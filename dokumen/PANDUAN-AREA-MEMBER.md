@@ -1,6 +1,6 @@
 # Panduan area member (website kelas untuk pembeli)
 
-Folder: `Company Profile/member/`. HTML, CSS, dan JavaScript biasa, tanpa build step.
+Folder: `member/`. HTML, CSS, dan JavaScript biasa, tanpa build step.
 Kebutuhan produk lengkap ada di `dokumen/PRD-AREA-MEMBER.md`.
 
 ## File yang biasa diubah
@@ -63,7 +63,7 @@ Kalau browser memblokir penyimpanan, kelas tetap bisa dipakai, tapi harus masuk 
 ## Publish ke Vercel (proyek terpisah dari website jualan)
 
 1. Vercel → Add New → Project → pilih repo `darvaaph/motionbareng`.
-2. **Root Directory:** `Company Profile/member`. Framework: Other. Tanpa build command.
+2. **Root Directory:** `member`. Framework: Other. Tanpa build command.
 3. Deploy. `vercel.json` sudah memasang `noindex` dan header keamanan dasar.
 4. Setelah dapat alamat/domain: isi `alamatMember` di `member/pengaturan.js`,
    dan `linkMasukKelas` di `website/pengaturan.js` (supaya tautan "Sudah beli? Masuk kelas" muncul di halaman bio).

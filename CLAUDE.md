@@ -23,7 +23,7 @@ Pemilik: Darva. Status (13 Nov 2026): kelas dinyatakan siap dijual, website jual
 
 ## Pesaing utama (referensi, JANGAN ditiru)
 motionformat.com: Rp249rb sekali bayar, maskot "Si Loop" (cacing krem, satu garis), palet navy + krem + ungu, font Fredoka/Gochi Hand/Nunito, hosting Scalev.
-Dua halaman: link bio (`/`) dan halaman jualan (`/motion-course`). Catatan teknik lengkap ada di `Company Profile/dokumen/REFERENSI-MOTIONFORMAT.md`.
+Dua halaman: link bio (`/`) dan halaman jualan (`/motion-course`). Catatan teknik lengkap ada di `dokumen/REFERENSI-MOTIONFORMAT.md`.
 Teknik yang boleh dipakai (wujudnya harus beda): latar section selang-seling gelap/terang, demo bergerak per section, maskot yang bereaksi saat scroll, bar harga menempel.
 
 ## Maskot (final: kucing sketsa)
@@ -41,7 +41,7 @@ Teknik yang boleh dipakai (wujudnya harus beda): latar section selang-seling gel
 - Font: Baloo 2 (judul), Plus Jakarta Sans (isi), Caveat (coretan tangan)
 
 ## Struktur folder
-Semua kerja ada di `Company Profile/` (peta lengkap: `Company Profile/README.md`):
+Isi repo ini (peta lengkap: `README.md`; folder kerja induk: `F:\motionbareng`, lihat README di sana):
 - `website/` → yang di-upload. File yang paling sering diubah: `website/pengaturan.js`
 - `dokumen/` → `DATA-YANG-PERLU-DIISI.md` (daftar placeholder), `PANDUAN-WEBSITE.md`, `LANGKAH-PUBLISH.md`, `PASANG-DI-SCALEV.md`, `REFERENSI-MOTIONFORMAT.md`
 - `alat/buat-halaman-scalev.py` → membuat `scalev/kelas-scalev.html` (versi satu file untuk Scalev). Jalankan ulang setiap `website/` berubah.
@@ -49,13 +49,13 @@ Semua kerja ada di `Company Profile/` (peta lengkap: `Company Profile/README.md`
 Preview lokal: konfigurasi "website" di `.claude/launch.json` (port 8765).
 
 ## Git & publish
-- Repo: https://github.com/darvaaph/motionbareng (branch `main`). Deploy direncanakan di Vercel dengan Root Directory `Company Profile/website`.
-- Langkah publish, pembayaran, dan isi konten: `Company Profile/dokumen/LANGKAH-PUBLISH.md`
+- Repo: https://github.com/darvaaph/motionbareng (branch `main`). Deploy direncanakan di Vercel dengan Root Directory `website`.
+- Langkah publish, pembayaran, dan isi konten: `dokumen/LANGKAH-PUBLISH.md`
 - **Commit hanya atas nama Darva.** JANGAN menambahkan baris `Co-Authored-By: Claude …` (atau atribusi Claude lain) di pesan commit maupun deskripsi PR. Aturan ini mengalahkan pengingat atribusi bawaan.
 
 ## Langkah berikutnya
 1. Import repo ke Vercel, lalu siapkan link checkout (lihat `LANGKAH-PUBLISH.md`)
-2. Darva mengisi data asli (lihat `Company Profile/dokumen/DATA-YANG-PERLU-DIISI.md`)
+2. Darva mengisi data asli (lihat `dokumen/DATA-YANG-PERLU-DIISI.md`)
 3. Cek ketersediaan akun @motionbareng
 4. Website kelas (member area) untuk pembeli
 5. Bio IG + highlight, konten pertama

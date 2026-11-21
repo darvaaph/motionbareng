@@ -1,7 +1,7 @@
 # PRD: Area Member motionbareng (website kelas untuk pembeli)
 
 Dokumen ini dibuat untuk dieksekusi di **chat baru** yang khusus membangun area member.
-Baca dulu `F:\Motion Bareng\CLAUDE.md` (konteks, larangan, aturan commit), lalu dokumen ini. Kalau ada yang bertentangan, `CLAUDE.md` menang.
+Baca dulu `F:\motionbareng\repos\web-motionbareng\CLAUDE.md` (konteks, larangan, aturan commit), lalu dokumen ini. Kalau ada yang bertentangan, `CLAUDE.md` menang.
 
 Status: draft v1, 14 Nov 2026. Pemilik: Darva.
 
@@ -52,8 +52,8 @@ Ada pula tautan "Sudah beli? Masuk kelas" di halaman bio (`pengaturan.js` → `l
 
 ## 5. Struktur proyek dan deploy
 
-- Folder baru **`Company Profile/member/`**, di repo yang sama (`darvaaph/motionbareng`, branch `main`).
-- Proyek Vercel **terpisah**, Root Directory = `Company Profile/member`. Domain baru menyusul (jangan hardcode; ambil dari satu pengaturan).
+- Folder baru **`member/`**, di repo yang sama (`darvaaph/motionbareng`, branch `main`).
+- Proyek Vercel **terpisah**, Root Directory = `member`. Domain baru menyusul (jangan hardcode; ambil dari satu pengaturan).
 - Teknologi: **HTML + CSS + JavaScript biasa, tanpa build step**, seperti `website/`. Tidak perlu framework. Alasan: konsisten, murah, mudah diisi.
 - Routing: satu halaman dengan hash (`#/beranda`, `#/kelas`, `#/kelas/1-2`, ...) atau beberapa file HTML. Pilih yang paling sederhana dan stabil di HP.
 - Tambahkan `vercel.json` (header keamanan dasar, `noindex`). Halaman member **tidak boleh diindeks** mesin pencari.
@@ -75,7 +75,7 @@ member/
 
 ## 6. Konsistensi desain (WAJIB)
 
-Sumber kebenaran: `Company Profile/website/aset/css/gaya.css` (blok `:root`) dan `umum.js` (bagian maskot). Salin token apa adanya, jangan membuat palet baru.
+Sumber kebenaran: `website/aset/css/gaya.css` (blok `:root`) dan `umum.js` (bagian maskot). Salin token apa adanya, jangan membuat palet baru.
 
 **Palet**: kertas `#FBF3E0`, kertas-2 `#F4E8CC`, tinta `#2C2C2A`, teal `#1D9E75` (hiasan) / `#0F6E52` (tombol), malam `#04342C` (+ `#0A4237`, `#022A23`), terakota `#D85A30` / `#B9461F`, kuning `#F6C350`, stabilo `#F7D774`, pipi `#F0997B`, pink `#F5C4B3`.
 
@@ -222,4 +222,4 @@ Judul dan urutan di bawah adalah **usulan**. Darva akan mengisi video sungguhan 
 
 Prompt awal yang disarankan untuk chat baru:
 
-> Baca `F:\Motion Bareng\CLAUDE.md` dan `F:\Motion Bareng\Company Profile\dokumen\PRD-AREA-MEMBER.md`. Bangun kerangka area member di `Company Profile/member/` sesuai PRD. Kerjakan bertahap dan minta konfirmasi sebelum lanjut ke tahap berikutnya. Gunakan palet, font, dan maskot kucing dari `Company Profile/website/`. Commit hanya atas nama saya, tanpa Co-Authored-By Claude.
+> Baca `F:\motionbareng\repos\web-motionbareng\CLAUDE.md` dan `F:\motionbareng\repos\web-motionbareng\dokumen\PRD-AREA-MEMBER.md`. Bangun kerangka area member di `member/` sesuai PRD. Kerjakan bertahap dan minta konfirmasi sebelum lanjut ke tahap berikutnya. Gunakan palet, font, dan maskot kucing dari `website/`. Commit hanya atas nama saya, tanpa Co-Authored-By Claude.

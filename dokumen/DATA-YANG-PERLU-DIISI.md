@@ -1,7 +1,7 @@
 # Data yang perlu diisi sebelum website di-upload
 
 Saat ini semua bagian di bawah masih berisi **placeholder** (data contoh). Centang kalau sudah diganti.
-Semua path di bawah relatif terhadap folder `Company Profile/`.
+Semua path di bawah relatif terhadap akar repo `web-motionbareng/`.
 
 ## Wajib
 

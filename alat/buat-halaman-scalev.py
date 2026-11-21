@@ -6,17 +6,17 @@ Scalev hanya menerima satu dokumen HTML, jadi skrip ini memasukkan
 gaya.css, pengaturan.js, umum.js, favicon, dan logo alat langsung ke dalam file.
 
 Cara pakai (jalankan setiap kali website/ diubah, lalu upload ulang ke Scalev):
-    python "F:/Motion Bareng/Company Profile/alat/buat-halaman-scalev.py"
+    python "F:/motionbareng/repos/web-motionbareng/alat/buat-halaman-scalev.py"
 
 Hasil:
-    Company Profile/scalev/kelas-scalev.html
+    scalev/kelas-scalev.html
 """
 import base64
 import json
 import re
 from pathlib import Path
 
-AKAR = Path(__file__).resolve().parent.parent          # folder "Company Profile"
+AKAR = Path(__file__).resolve().parent.parent          # akar repo web-motionbareng
 WEB = AKAR / "website"
 HASIL = AKAR / "scalev" / "kelas-scalev.html"
 
